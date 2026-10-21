@@ -118,7 +118,7 @@ test("keyboard skip link and mobile navigation support focus, Escape, and naviga
   await expect(menu).not.toBeVisible();
 });
 
-test("unconfigured contact form stays visible without accepting or sending inquiries", async ({
+test("unconfigured contact form allows editing while sending stays disabled", async ({
   page,
   request,
 }) => {
@@ -135,10 +135,23 @@ test("unconfigured contact form stays visible without accepting or sending inqui
       ".form-grid input, .form-grid select, .form-grid textarea, .form-consent input",
     )
     .all()) {
-    await expect(field).toBeDisabled();
+    await expect(field).toBeEnabled();
   }
   await expect(page.getByLabel("Service of interest")).toHaveValue(
     "ai-automation",
+  );
+  await expect(
+    page.getByRole("button", { name: "Send inquiry" }),
+  ).toBeDisabled();
+  await page.getByLabel("Full name", { exact: true }).fill("Layout Test");
+  await page.getByLabel("Business email").fill("layout@example.com");
+  await page.getByLabel("Service of interest").selectOption("web-mobile");
+  await page
+    .getByLabel("Tell us about your project")
+    .fill("Testing how the form looks with project details entered.");
+  await page.getByRole("checkbox").check();
+  await expect(page.getByLabel("Full name", { exact: true })).toHaveValue(
+    "Layout Test",
   );
   await expect(
     page.getByRole("button", { name: "Send inquiry" }),

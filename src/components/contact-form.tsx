@@ -120,7 +120,6 @@ export function ContactForm({
     }
   }
   const attributes = (field: keyof InquiryErrors) => ({
-    disabled: !available,
     "aria-invalid": Boolean(errors[field]),
     "aria-describedby": errors[field] ? `${field}-error` : undefined,
   });
@@ -165,7 +164,9 @@ export function ContactForm({
       {!available && (
         <div className="form-notice" id="contact-unavailable">
           <strong>Online inquiries are not open yet.</strong>
-          <p>The form is shown below, but sending is currently unavailable.</p>
+          <p>
+            You can fill out the fields, but sending is currently unavailable.
+          </p>
           {email && (
             <p>
               You can email us at <a href={`mailto:${email}`}>{email}</a>.

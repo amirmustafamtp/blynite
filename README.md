@@ -37,7 +37,7 @@ Design tokens live in `src/app/globals.css`. Navy `#061B34`, logo navy `#0D2B49`
 
 ## Contact delivery
 
-The form stays visible while delivery is unconfigured, with its fields and submit button disabled. `.env.example` includes the Blynite recipient and proposed sender; add a real Resend API key and generated form secret in your deployment settings when ready. The sender domain must be verified in Resend.
+The form stays visible while delivery is unconfigured, with editable fields for layout testing and a disabled submit button. `.env.example` includes the Blynite recipient and proposed sender; add a real Resend API key and generated form secret in your deployment settings when ready. The sender domain must be verified in Resend.
 
 No lead database is used. Credentials must only be set in server environment variables. Never prefix secrets with `NEXT_PUBLIC_`.
 
