@@ -5,29 +5,18 @@ export function LegalPage({ type }: { type: "privacy" | "terms" }) {
   return (
     <>
       <PageHero
-        eyebrow={privacy ? "Legal" : "Legal · Draft for review"}
+        eyebrow="Legal"
         title={privacy ? "Privacy Policy" : "Terms of Service"}
         description={
           privacy
             ? "How we handle personal information when you visit our website or contact Blynite."
-            : "This document is a working draft. It requires review and approval before the website launches publicly."
+            : "The terms for using Blynite’s website, exploring our services, and sending project inquiries."
         }
       />
       <article id="page-content" className="container narrow-content section">
-        {privacy ? (
-          <p>
-            Last updated: <time dateTime="2026-10-21">October 21, 2026</time>
-          </p>
-        ) : (
-          <div className="legal-draft">
-            <strong>Draft — not an approved legal policy.</strong>
-            <p>
-              The operating entity, applicable jurisdiction, contact details,
-              service providers, and final terms must be confirmed before this
-              document takes effect.
-            </p>
-          </div>
-        )}
+        <p>
+          Last updated: <time dateTime="2026-10-21">October 21, 2026</time>
+        </p>
         {privacy ? (
           <>
             <section className="legal-section">
@@ -168,63 +157,131 @@ export function LegalPage({ type }: { type: "privacy" | "terms" }) {
         ) : (
           <>
             <section className="legal-section">
-              <h2>About this website</h2>
+              <h2>About these terms</h2>
               <p>
-                This website introduces Blynite’s software engineering, AI, and
-                digital product capabilities. Descriptions are general
-                information. Project scope, fees, timelines, deliverables, and
-                service commitments must be agreed in a separate written
-                agreement.
+                These terms describe the conditions for using blynite.com,
+                operated by Blynite. The website introduces our software
+                engineering, AI, and digital product services. You may contact
+                us about these terms at{" "}
+                <a href="mailto:info@blynite.com">info@blynite.com</a>.
+              </p>
+              <p>
+                These website terms do not replace a signed proposal, service
+                agreement, or product-specific terms. Separate written
+                agreements govern paid work and take precedence for that work.
               </p>
             </section>
             <section className="legal-section">
-              <h2>Project inquiries</h2>
+              <h2>Project inquiries and service agreements</h2>
               <p>
-                Sending an inquiry does not create a service agreement or
-                reserve delivery capacity. Do not submit material that you are
-                not authorized to share. Confidential materials should be
-                exchanged only after the appropriate arrangements have been
-                agreed.
+                Sending an inquiry starts a conversation. It does not create a
+                service agreement, confirm a price, or reserve delivery
+                capacity. Project scope, fees, payment arrangements, timelines,
+                deliverables, ownership, support, and cancellation terms are
+                agreed separately before work begins.
               </p>
-            </section>
-            <section className="legal-section">
-              <h2>Brand and website materials</h2>
               <p>
-                The Blynite identity and website materials are presented to
-                explain the company’s services. The final terms must confirm
-                ownership, permitted use, and any relevant third-party licenses.
-                Requests to reuse brand assets should be agreed with Blynite.
+                Please provide accurate contact details and only share
+                information you are authorized to provide. Do not include
+                passwords or sensitive personal information in an initial
+                inquiry. Arrange any necessary confidentiality protections with
+                us before sharing confidential project materials.
               </p>
             </section>
             <section className="legal-section">
               <h2>Responsible use</h2>
               <p>
-                Use the website and inquiry form for legitimate communication.
-                Do not attempt to interfere with the website, bypass security
-                controls, or submit unsolicited automated messages.
+                Use the website for lawful research and genuine business
+                communication. Do not impersonate another person, submit spam,
+                distribute malicious code, access systems without permission,
+                bypass security controls, or disrupt the website or its users.
+                We may limit access where reasonably necessary to address
+                misuse, security threats, or legal requirements.
               </p>
             </section>
             <section className="legal-section">
-              <h2>Items requiring legal review</h2>
+              <h2>Website content and brand materials</h2>
               <p>
-                The final terms must identify the contracting entity, governing
-                law, dispute process, warranties, limitations of liability,
-                external-link responsibilities, and how changes take effect.
-                These provisions have not been approved and are intentionally
-                left for legal review.
+                Website content, designs, and brand assets belong to Blynite or
+                their respective owners and are protected by applicable
+                intellectual property laws. Third-party names and marks remain
+                the property of their owners.
+              </p>
+              <p>
+                You may view the website, share links, and keep reasonable
+                copies for your own evaluation of our services, preserving
+                relevant ownership notices. Contact us for permission before
+                republishing our materials for commercial use or using our
+                branding in a way that suggests endorsement. These terms do not
+                grant ownership of our software or other intellectual property.
+              </p>
+            </section>
+            <section className="legal-section">
+              <h2>Information you submit</h2>
+              <p>
+                You retain ownership of the materials you share with us. Sending
+                an inquiry allows us to use its contents to evaluate your
+                request, communicate with you, and discuss potential work. It
+                does not transfer ownership of your ideas or project materials
+                to Blynite. Our <Link href="/privacy">Privacy Policy</Link>{" "}
+                explains how we handle personal information.
+              </p>
+            </section>
+            <section className="legal-section">
+              <h2>Website information and availability</h2>
+              <p>
+                We aim to keep website information accurate and useful, but
+                descriptions may change and may not address your particular
+                requirements. Confirm project-specific capabilities and
+                commitments with us before making a business decision.
+              </p>
+              <p>
+                The website may be interrupted for maintenance, technical
+                issues, or circumstances outside our control. We may update
+                website features and content. Any service levels or performance
+                commitments for a client project are set out in its separate
+                agreement.
+              </p>
+            </section>
+            <section className="legal-section">
+              <h2>External links</h2>
+              <p>
+                Links to third-party websites are provided for reference. Their
+                operators control their content, availability, privacy
+                practices, and terms. A link does not by itself mean that
+                Blynite endorses that website or its services.
+              </p>
+            </section>
+            <section className="legal-section">
+              <h2>Your legal rights</h2>
+              <p>
+                Nothing in these terms excludes or limits any rights, remedies,
+                or liability that cannot lawfully be excluded or limited.
+                Mandatory protections under applicable law continue to apply.
+                These terms do not impose a particular court, jurisdiction, or
+                arbitration process on website visitors.
+              </p>
+            </section>
+            <section className="legal-section">
+              <h2>Changes to these terms</h2>
+              <p>
+                We may update these terms to reflect changes to the website or
+                applicable requirements. The date above identifies the latest
+                version. Updates apply to future use of the website and do not
+                change an existing project agreement. We will provide additional
+                notice where required by applicable law.
+              </p>
+            </section>
+            <section className="legal-section">
+              <h2>Questions or concerns</h2>
+              <p>
+                Email <a href="mailto:info@blynite.com">info@blynite.com</a>{" "}
+                with questions about these terms or concerns about the website
+                so we can work toward a resolution. For a new project, visit our
+                <Link href="/contact"> contact page</Link>.
               </p>
             </section>
           </>
-        )}
-        {!privacy && (
-          <section className="legal-section">
-            <h2>Before publication</h2>
-            <p>
-              Replace this draft with reviewed terms reflecting Blynite’s actual
-              operations. For general project information, visit our{" "}
-              <Link href="/contact">contact page</Link>.
-            </p>
-          </section>
         )}
       </article>
     </>

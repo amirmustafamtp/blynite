@@ -61,6 +61,7 @@ test("desktop and mobile pages pass automated accessibility checks", async ({
       "/about",
       "/contact",
       "/privacy",
+      "/terms",
       "/services/ai-automation",
     ]) {
       await page.goto(route);
@@ -186,7 +187,7 @@ test("unknown and unpublished content is absent; SEO endpoints expose public pag
   const xml = await (await request.get("/sitemap.xml")).text();
   expect(xml).toContain("https://blynite.com/services/ai-automation");
   expect(xml).toContain("https://blynite.com/privacy");
-  expect(xml).not.toContain("/terms");
+  expect(xml).toContain("https://blynite.com/terms");
   expect(await (await request.get("/robots.txt")).text()).toContain(
     "Sitemap: https://blynite.com/sitemap.xml",
   );
@@ -202,10 +203,17 @@ test("unknown and unpublished content is absent; SEO endpoints expose public pag
     page.locator('main a[href="mailto:info@blynite.com"]').first(),
   ).toBeVisible();
   await page.goto("/terms");
-  await expect(page.locator('meta[name="robots"]')).toHaveAttribute(
-    "content",
-    /noindex/,
+  await expect(page).toHaveTitle("Terms of Service | Blynite");
+  await expect(page.locator("main")).not.toContainText(
+    /draft|before publication|requiring legal review/i,
   );
+  await expect(
+    page.locator('meta[name="robots"][content*="noindex"]'),
+  ).toHaveCount(0);
+  await expect(
+    page.locator('main a[href="mailto:info@blynite.com"]').first(),
+  ).toBeVisible();
+  await expect(page.locator('main a[href="/privacy"]')).toBeVisible();
   await page.goto("/");
   await expect(page.locator('meta[property="og:image"]')).toHaveAttribute(
     "content",
