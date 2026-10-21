@@ -20,8 +20,8 @@ export function Logo({ dark = true }: { dark?: boolean }) {
       <Image
         src={`/brand/logo-${dark ? "white" : "navy"}.svg`}
         alt="Blynite"
-        width={1600}
-        height={560}
+        width={1821}
+        height={437}
         priority
       />
     </Link>

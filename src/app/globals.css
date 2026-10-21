@@ -184,9 +184,9 @@ svg {
 }
 .brand {
   display: block;
-  width: 194px;
+  width: 220px;
   flex-shrink: 0;
-  margin-left: -15px;
+  margin-left: -4px;
 }
 .brand img {
   width: 100%;
@@ -994,8 +994,8 @@ svg {
   padding-bottom: 62px;
 }
 .footer-brand .brand {
-  margin-top: -13px;
-  width: 191px;
+  margin-top: -4px;
+  width: 220px;
 }
 .footer-brand > p {
   font-size: 11px;
@@ -1484,7 +1484,7 @@ svg {
     gap: 18px;
   }
   .brand {
-    width: 173px;
+    width: 200px;
   }
   .header-inner {
     gap: 17px;
@@ -1581,7 +1581,7 @@ svg {
     height: 76px;
   }
   .brand {
-    width: 184px;
+    width: 210px;
   }
   .mobile-nav {
     display: flex;
@@ -1851,8 +1851,8 @@ svg {
     height: 72px;
   }
   .brand {
-    width: 173px;
-    margin-left: -13px;
+    width: 200px;
+    margin-left: -4px;
   }
   .mobile-nav {
     top: 72px;
