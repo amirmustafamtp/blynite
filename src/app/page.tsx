@@ -26,11 +26,7 @@ export default function HomePage() {
               <h1>
                 Intelligence
                 <br />
-                <span>
-                  Beyond
-                  <br />
-                  Boundaries.
-                </span>
+                <span>Beyond Boundaries.</span>
               </h1>
               <p>{site.description}</p>
               <div className="button-row">
