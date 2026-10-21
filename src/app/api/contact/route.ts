@@ -105,8 +105,7 @@ export async function POST(request: NextRequest) {
   try {
     await deliverInquiry(result.data, config);
     return reply({
-      message:
-        "Thank you. Your inquiry has been submitted to our delivery provider.",
+      message: "Your inquiry has been sent.",
     });
   } catch {
     return reply(

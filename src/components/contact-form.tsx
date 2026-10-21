@@ -23,6 +23,7 @@ export function ContactForm({
   const [sending, setSending] = useState(false);
   const [token, setToken] = useState("");
   const [ready, setReady] = useState(false);
+  const [connectionAttempt, setConnectionAttempt] = useState(0);
   const statusRef = useRef<HTMLDivElement>(null);
   useEffect(() => {
     if (status) statusRef.current?.focus();
@@ -31,7 +32,10 @@ export function ContactForm({
     if (!available) return;
     const controller = new AbortController();
     let timer: ReturnType<typeof setTimeout>;
-    fetch("/api/contact", { signal: controller.signal, cache: "no-store" })
+    fetch("/api/contact", {
+      signal: AbortSignal.any([controller.signal, AbortSignal.timeout(10000)]),
+      cache: "no-store",
+    })
       .then((response) => response.json())
       .then((result) => {
         if (result.available && typeof result.token === "string") {
@@ -48,7 +52,7 @@ export function ContactForm({
         if (!controller.signal.aborted)
           setStatus({
             message:
-              "The form could not connect. Please refresh this page to try again.",
+              "The form could not connect. Retry below; any details you entered will stay here.",
             success: false,
           });
       });
@@ -56,7 +60,7 @@ export function ContactForm({
       controller.abort();
       clearTimeout(timer);
     };
-  }, [available]);
+  }, [available, connectionAttempt]);
   function feedback(message: string, success = false) {
     setStatus({ message, success });
   }
@@ -125,6 +129,58 @@ export function ContactForm({
         {errors[field]}
       </p>
     );
+  if (!available) {
+    return (
+      <div
+        className="contact-panel"
+        aria-labelledby="contact-unavailable-title"
+      >
+        <h2 id="contact-unavailable-title">
+          Online inquiries are not open yet.
+        </h2>
+        <p>You can’t send a project inquiry through this page right now.</p>
+        {email ? (
+          <>
+            <p>You can email us about your project instead.</p>
+            <a className="button button-primary" href={`mailto:${email}`}>
+              Email Blynite <ArrowUpRight size={18} aria-hidden="true" />
+            </a>
+            <p className="contact-email">{email}</p>
+          </>
+        ) : (
+          <>
+            <p>
+              Please check back later. In the meantime, explore how we can help
+              with your project.
+            </p>
+            <Link className="button button-primary" href="/services">
+              Explore services <ArrowUpRight size={18} aria-hidden="true" />
+            </Link>
+          </>
+        )}
+      </div>
+    );
+  }
+  if (status?.success) {
+    return (
+      <div
+        className="contact-panel contact-confirmation"
+        ref={statusRef}
+        tabIndex={-1}
+        role="status"
+      >
+        <h2>Thank you for reaching out.</h2>
+        <p>{status.message}</p>
+        <p>
+          We’ll use the email address you provided to follow up about your
+          project.
+        </p>
+        <Link className="text-link" href="/">
+          Back to home <ArrowUpRight size={18} aria-hidden="true" />
+        </Link>
+      </div>
+    );
+  }
   return (
     <form
       className="contact-form"
@@ -132,20 +188,33 @@ export function ContactForm({
       noValidate
       aria-label="Project inquiry"
     >
-      {!available && (
-        <div className="form-notice">
-          <strong>Online inquiries are not open yet.</strong>
-          <br />
-          This form is not connected to a delivery provider, so it cannot send
-          your information.
-          {email && (
-            <>
-              {" "}
-              You can reach us at <a href={`mailto:${email}`}>{email}</a>.
-            </>
-          )}
-        </div>
-      )}
+      <div className="contact-form-intro">
+        <h2>Tell us about your idea.</h2>
+        <p>All fields are required unless marked optional.</p>
+      </div>
+      <div aria-live="polite" aria-atomic="true">
+        {status && (
+          <div
+            ref={statusRef}
+            tabIndex={-1}
+            className="form-status status-error"
+          >
+            <p>{status.message}</p>
+            {!ready && (
+              <button
+                type="button"
+                className="text-link"
+                onClick={() => {
+                  setStatus(null);
+                  setConnectionAttempt((attempt) => attempt + 1);
+                }}
+              >
+                Retry connection
+              </button>
+            )}
+          </div>
+        )}
+      </div>
       <div className="form-grid">
         <div className="field">
           <label htmlFor="name">Full name</label>
@@ -257,17 +326,6 @@ export function ContactForm({
         </span>
       </label>
       {error("consent")}
-      <div aria-live="polite" aria-atomic="true">
-        {status && (
-          <div
-            ref={statusRef}
-            tabIndex={-1}
-            className={`form-status status-${status.success ? "success" : "error"}`}
-          >
-            {status.message}
-          </div>
-        )}
-      </div>
       <button
         className="button button-primary"
         type="submit"
@@ -278,6 +336,10 @@ export function ContactForm({
             Sending inquiry
             <LoaderCircle size={18} aria-hidden="true" />
           </>
+        ) : !ready ? (
+          <>
+            Preparing form <LoaderCircle size={18} aria-hidden="true" />
+          </>
         ) : (
           <>
             Send inquiry
@@ -286,9 +348,13 @@ export function ContactForm({
         )}
       </button>
       <p className="submit-note">
-        {available
-          ? "A considered conversation is the first step."
-          : "Submission will be enabled when delivery is configured."}
+        We’ll use your email to follow up about your project.
+        {email && (
+          <>
+            {" "}
+            Prefer email? <a href={`mailto:${email}`}>{email}</a>
+          </>
+        )}
       </p>
     </form>
   );

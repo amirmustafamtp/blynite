@@ -1,5 +1,5 @@
 import { ContactForm } from "@/components/contact-form";
-import { Eyebrow, PageHero } from "@/components/ui";
+import { Eyebrow } from "@/components/ui";
 import { pageMetadata } from "@/lib/metadata";
 import { contactConfig } from "@/lib/contact-config";
 import { deliveryReady } from "@/lib/contact-server";
@@ -22,31 +22,18 @@ export default async function Contact({
     email && /^[^\s@<>]+@[^\s@<>]+\.[^\s@<>]+$/.test(email) ? email : undefined;
   return (
     <>
-      <PageHero
-        eyebrow="Start a conversation"
-        title="Let's build something meaningful."
-        description="A new idea. A complex challenge. A product ready for its next chapter. We'd like to hear about it."
-      />
-      <section className="section" id="page-content">
+      <section className="contact-hero dark-section">
+        <div className="container">
+          <Eyebrow light>Start a conversation</Eyebrow>
+          <h1>Start a project.</h1>
+          <p>
+            A new idea, a complex challenge, or a product ready for its next
+            chapter.
+          </p>
+        </div>
+      </section>
+      <section className="section contact-section" id="page-content">
         <div className="container contact-layout">
-          <aside className="contact-aside">
-            <Eyebrow>Your next chapter</Eyebrow>
-            <h2>Great work starts with a good conversation.</h2>
-            <p>
-              Tell us what you have in mind. You don’t need a finished brief — a
-              clear problem is a good place to start.
-            </p>
-            <ul>
-              <li>Share your idea and the problem behind it.</li>
-              <li>Tell us about your users, constraints, and timing.</li>
-              <li>We’ll explore a practical way forward together.</li>
-            </ul>
-            {publicEmail && (
-              <a className="text-link" href={`mailto:${publicEmail}`}>
-                {publicEmail}
-              </a>
-            )}
-          </aside>
           <ContactForm
             available={deliveryReady(contactConfig())}
             initialService={
@@ -54,6 +41,27 @@ export default async function Contact({
             }
             email={publicEmail}
           />
+          <aside className="contact-aside">
+            <Eyebrow>A good place to start</Eyebrow>
+            <h2>No finished brief needed.</h2>
+            <p>
+              A few details help us understand your project and make the first
+              conversation useful.
+            </p>
+            <ul>
+              <li>Share your idea and the problem behind it.</li>
+              <li>Tell us about your users, constraints, and timing.</li>
+              <li>
+                Choose “Not sure yet” if you need help finding the right
+                service.
+              </li>
+            </ul>
+            {publicEmail && (
+              <a className="text-link" href={`mailto:${publicEmail}`}>
+                {publicEmail}
+              </a>
+            )}
+          </aside>
         </div>
       </section>
     </>
