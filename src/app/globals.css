@@ -1065,6 +1065,7 @@ svg {
 }
 .footer-bottom > div {
   display: flex;
+  flex-wrap: wrap;
   gap: 25px;
 }
 .footer-bottom a {
@@ -1548,6 +1549,77 @@ svg {
   color: var(--muted);
   font-size: 16px;
   line-height: 1.75;
+}
+.app-policy {
+  overflow-wrap: anywhere;
+}
+.app-policy > .text-link {
+  margin-bottom: 28px;
+}
+.app-policy a:not(.text-link),
+.app-policy-contents a {
+  color: #086d98;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+.app-policy-details {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 260px), 1fr));
+  gap: 24px;
+  padding-block: 28px;
+  border-block: 1px solid #dce5ec;
+}
+.app-policy-details dt,
+.app-policy-platform {
+  font-size: 14px;
+  color: var(--muted);
+  margin-bottom: 6px;
+}
+.app-policy-details dd {
+  margin: 0;
+}
+.app-policy-contents {
+  margin-block: 36px;
+  padding: 24px;
+  background: #f2f7fa;
+  border-radius: 8px;
+}
+.app-policy-contents h2 {
+  font-size: 21px;
+  margin-bottom: 16px;
+}
+.app-policy-contents ol {
+  padding-left: 24px;
+}
+.app-policy-contents a {
+  display: inline-block;
+  padding-block: 7px;
+  line-height: 1.6;
+}
+.app-policy .legal-section {
+  scroll-margin-top: 120px;
+}
+.app-policy .legal-section li + li {
+  margin-top: 12px;
+}
+.app-policy-list {
+  list-style: none;
+  padding: 0;
+  margin-top: 32px;
+}
+.app-policy-list > li {
+  padding-block: 28px;
+  border-top: 1px solid #dce5ec;
+}
+.app-policy-list h2 {
+  font-size: clamp(23px, 4vw, 30px);
+  margin-bottom: 12px;
+}
+.app-policy-list .text-link {
+  margin-top: 20px;
+}
+.app-policy-empty {
+  margin-top: 32px;
 }
 .not-found {
   min-height: 65vh;

@@ -117,6 +117,38 @@ Canonical URLs, Organization structured data, sitemap, robots, and sharing metad
 
 The Privacy Policy is public and included in the sitemap. It describes the website’s inquiry flow, Vercel hosting, planned Resend delivery when enabled, and the confirmed contact address `info@blynite.com`. Keep it aligned with actual processing and retention practices; publication is not a certification of legal compliance. Terms of Service are also public and included in the sitemap. They cover website use and inquiries; paid project commitments belong in separate written agreements. No unconfirmed registered entity, governing jurisdiction, or exclusive dispute forum is asserted. Staging should be access-controlled or configured `noindex` by the host.
 
+## Mobile app privacy policies
+
+- Directory: `/apps/privacy` (linked as **App Privacy** in the footer).
+- Individual policy: `/apps/<app-slug>/privacy`.
+- QR & Barcode Toolkit: `/apps/qr-barcode-toolkit/privacy`.
+- Website privacy stays at `/privacy`; app policy content is maintained separately.
+
+Add a typed content file in `src/data/app-policies/` and register it in `index.ts`.
+Each entry defines its stable slug, app name, platform, covered version, contact,
+effective date, and sections with unique anchor IDs. The shared route handles
+layout, table of contents, canonical metadata, and unknown-app 404 responses.
+Published policies automatically appear in the directory and sitemap.
+
+The supplied QR policy is currently `preview`: it is visible only with `npm run dev`,
+has `noindex` metadata, and returns 404 in production. The production directory
+does not list preview entries. No environment switch enables them in production.
+Internal reviewer notes and the original draft attachment are not served or copied
+into public assets. Do not use the QR URL in a store listing until it is published.
+
+To publish QR's policy, resolve the supplied draft's SDK diagnostic handling,
+children's privacy wording, support-request processing, and effective date. Verify
+the support contact and covered release. Replace the pending preview text in
+`qr-barcode-toolkit.tsx`, set `status: "published"` and an approved ISO effective
+date (`YYYY-MM-DD`), then build and deploy. Keep future policy edits aligned with
+each app's actual behavior. Update the preview-specific browser assertions when
+the policy is approved; never change status merely to make a test pass.
+
+Run `npm run test:browser -- tests/browser/app-policies.spec.ts` to check the
+directory, production publication boundary, local preview layout/accessibility,
+and section links. Local preview checks require a development server on port 3000;
+they are skipped against a production-only server.
+
 ## Browser verification
 
 The browser suite uses a production build and starts servers on ports 3000 and 3001. Run it with contact environment variables unset to verify the unavailable state on port 3000. Port 3001 uses explicit dummy credentials for form-state testing; every valid submission is intercepted by Playwright and receives a simulated response. The tests never send a real inquiry.
