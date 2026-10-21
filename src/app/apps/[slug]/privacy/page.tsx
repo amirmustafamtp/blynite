@@ -4,12 +4,12 @@ import { PageHero } from "@/components/ui";
 import {
   appPrivacyPath,
   availableAppPrivacyPolicies,
-  publishedAppPrivacyPolicies,
+  publicAppPrivacyPolicies,
 } from "@/data/app-policies";
 import { pageMetadata } from "@/lib/metadata";
 
 export function generateStaticParams() {
-  return publishedAppPrivacyPolicies.map(({ slug }) => ({ slug }));
+  return publicAppPrivacyPolicies.map(({ slug }) => ({ slug }));
 }
 
 async function getPolicy(params: Promise<{ slug: string }>) {
@@ -27,11 +27,11 @@ export async function generateMetadata({
   params: Promise<{ slug: string }>;
 }) {
   const policy = await getPolicy(params);
-  if (policy.status === "preview") {
+  if (policy.status !== "published") {
     return {
       title: `${policy.name} Privacy Policy — Draft`,
       description:
-        "DRAFT — NOT FOR PUBLICATION. Local policy preview awaiting owner approval.",
+        "DRAFT — NOT FOR PUBLICATION. Policy draft awaiting final owner approval.",
       robots: { index: false, follow: false },
     };
   }
@@ -62,13 +62,15 @@ export default async function AppPrivacyPage({
         <Link href="/apps/privacy" className="text-link">
           All app privacy policies
         </Link>
-        {policy.status === "preview" && (
+        {policy.status !== "published" && (
           <aside className="legal-draft" aria-label="Policy preview status">
             <strong>DRAFT — NOT FOR PUBLICATION</strong>
             <p>
-              This policy is awaiting owner approval and is not yet effective.
-              The public privacy-policy URL is pending. This preview is
-              available only in local development.
+              This policy is awaiting final owner approval and is not yet
+              effective.
+              {policy.status === "public-preview"
+                ? " This draft is publicly accessible for review; it is not the final policy."
+                : " The public privacy-policy URL is pending. This preview is available only in local development."}
             </p>
           </aside>
         )}

@@ -9,6 +9,6 @@ export type AppPrivacyPolicy = {
   summary: string;
   sections: { id: string; title: string; content: ReactNode }[];
 } & (
-  | { status: "preview"; effectiveDate: null }
+  | { status: "preview" | "public-preview"; effectiveDate: null }
   | { status: "published"; effectiveDate: string }
 );

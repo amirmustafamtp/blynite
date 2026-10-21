@@ -121,39 +121,41 @@ The Privacy Policy is public and included in the sitemap. It describes the websi
 
 - Directory: `/apps/privacy` (linked as **App Privacy** in the footer).
 - Individual policy: `/apps/<app-slug>/privacy`.
-- QR & Barcode Toolkit local preview: `/apps/qr-barcode-toolkit/privacy`; its public policy URL remains pending owner approval.
+- QR & Barcode Toolkit public draft: `https://blynite.com/apps/qr-barcode-toolkit/privacy`.
 - Website privacy stays at `/privacy`; app policy content is maintained separately.
 
 Add a typed content file in `src/data/app-policies/` and register it in `index.ts`.
 Each entry defines its stable slug, app name, platform, covered version, contact,
 effective date, and sections with unique anchor IDs. The shared route handles
-layout, table of contents, canonical metadata, and unknown-app 404 responses.
-Published policies automatically appear in the directory and sitemap.
+layout, table of contents, metadata, and unknown-app 404 responses.
 
-The supplied QR policy is currently `preview`: it is visible only with `npm run dev`,
-is marked **DRAFT — NOT FOR PUBLICATION**, has `noindex` metadata without a
-public canonical/share URL, and returns 404 in production. The production directory
-does not list preview entries. No environment switch enables them in production.
-Internal reviewer notes and the original draft attachment are not served or copied
-into public assets. Do not use the QR URL in a store listing until it is published.
+Policy statuses:
 
-The owner confirmed on October 22, 2026 that no final QR policy is approved.
+- `preview`: local development only; returns 404 in production.
+- `public-preview`: explicitly authorized public draft; visible in the directory,
+  marked **DRAFT — NOT FOR PUBLICATION**, with `noindex`, no canonical/share URL,
+  no effective date, and excluded from the sitemap.
+- `published`: final approved policy with an effective date; included in the
+  directory and sitemap with canonical metadata.
+
+On October 22, 2026 the owner authorized making the QR draft publicly accessible
+for now. Its status is `public-preview`. This authorizes public access to the
+existing draft, not claims that the unresolved details have been verified or that
+it is a final effective policy. Internal reviewer notes and the original attachment
+are not served or copied into public assets.
+
 Confirmed identity: Blynite, support@blynite.com, blynite.com, intended audience 13+.
-Do not publish or treat this preview as final without explicit owner approval.
 Do not promise zero collection/transmission, specific response times, or deletion
-of Google-held data. Before requesting publication approval, resolve SDK diagnostic
-handling, children's privacy wording, support/privacy-request monitoring, handling
-and retention, the effective date, and the public policy URL. Verify the covered
-release. Only after owner approval, replace the pending preview text in
-`qr-barcode-toolkit.tsx`, set `status: "published"` and an approved ISO effective
-date (`YYYY-MM-DD`), then build and deploy. Keep future policy edits aligned with
-each app's actual behavior. Update the preview-specific browser assertions when
-the policy is approved; never change status merely to make a test pass.
+of Google-held data. Before final approval, resolve SDK diagnostic handling,
+children's privacy wording, support/privacy-request monitoring, handling and
+retention, and the effective date. Verify the covered release. Only after final
+owner approval, replace pending text, set `status: "published"` and an approved
+ISO effective date (`YYYY-MM-DD`), then build and deploy. Keep future policy edits
+aligned with each app's actual behavior.
 
 Run `npm run test:browser -- tests/browser/app-policies.spec.ts` to check the
-directory, production publication boundary, local preview layout/accessibility,
-and section links. Local preview checks require a development server on port 3000;
-they are skipped against a production-only server.
+directory, public draft availability without indexing, mobile/desktop
+accessibility, and section links.
 
 ## Browser verification
 

@@ -28,10 +28,6 @@ test("app policy preview is readable and accessible on mobile and desktop", asyn
   page,
 }) => {
   const response = await page.goto(policyPath);
-  test.skip(
-    response?.status() === 404,
-    "Unapproved policy is intentionally unavailable on a production server.",
-  );
   expect(response?.status()).toBe(200);
   await expect(page.locator("h1")).toHaveText("QR & Barcode Toolkit");
   await expect(page.locator('meta[name="robots"]')).toHaveAttribute(
@@ -45,11 +41,11 @@ test("app policy preview is readable and accessible on mobile and desktop", asyn
     "DRAFT — NOT FOR PUBLICATION",
   );
   await expect(page.locator("#policy-location")).toContainText(
-    "pending owner approval",
+    "Final policy approval",
   );
   await expect(
     page.locator(`main a[href="https://blynite.com${policyPath}"]`),
-  ).toHaveCount(0);
+  ).toHaveCount(1);
   await expect(page.locator("main")).not.toContainText(
     /TODO:|INTERNAL REVIEWER NOTES|Future Connect|fc\.net\.pk|\/Users\//,
   );
@@ -90,14 +86,20 @@ test("app policy preview is readable and accessible on mobile and desktop", asyn
   await expect(page).toHaveURL(/#retention-and-deletion$/);
 });
 
-test("production excludes unfinished policies and indexes the directory", async ({
+test("production serves the authorized public draft without indexing it", async ({
   request,
 }) => {
   const base = "http://127.0.0.1:3001";
-  expect((await request.get(`${base}${policyPath}`)).status()).toBe(404);
+  const policy = await request.get(`${base}${policyPath}`);
+  expect(policy.status()).toBe(200);
+  const html = await policy.text();
+  expect(html).toContain("DRAFT — NOT FOR PUBLICATION");
+  expect(html).toContain("noindex");
+  expect(html).toContain("Pending final approval");
+  expect(html).not.toContain("available only in local development");
   const directory = await request.get(`${base}/apps/privacy`);
   expect(directory.status()).toBe(200);
-  expect(await directory.text()).not.toContain("QR &amp; Barcode Toolkit");
+  expect(await directory.text()).toContain("QR &amp; Barcode Toolkit");
   const sitemap = await (await request.get(`${base}/sitemap.xml`)).text();
   expect(sitemap).toContain("https://blynite.com/apps/privacy");
   expect(sitemap).not.toContain(policyPath);

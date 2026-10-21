@@ -11,9 +11,12 @@ export const publishedAppPrivacyPolicies = appPrivacyPolicies.filter(
   (policy) => policy.status === "published",
 );
 
-// Unfinished policies can be reviewed locally but are never served in production.
+// Public previews require explicit owner authorization; local previews stay private.
+export const publicAppPrivacyPolicies = appPrivacyPolicies.filter(
+  (policy) => policy.status !== "preview",
+);
 export function availableAppPrivacyPolicies() {
   return process.env.NODE_ENV === "development"
     ? appPrivacyPolicies
-    : publishedAppPrivacyPolicies;
+    : publicAppPrivacyPolicies;
 }

@@ -9,7 +9,7 @@ export const qrBarcodeToolkitPolicy: AppPrivacyPolicy = {
   contactEmail: "support@blynite.com",
   summary:
     "How QR & Barcode Toolkit handles scanning, generated codes, local history, and content you choose to share.",
-  status: "preview",
+  status: "public-preview",
   effectiveDate: null,
   sections: [
     {
@@ -308,10 +308,12 @@ export const qrBarcodeToolkitPolicy: AppPrivacyPolicy = {
       content: (
         <>
           <p>
-            Public privacy-policy URL: pending owner approval. The local preview
-            route is for review only and is not an approved public policy
-            address. This draft must not be published or treated as the final
-            policy without the owner’s approval.
+            This draft is available for review at{" "}
+            <a href="https://blynite.com/apps/qr-barcode-toolkit/privacy">
+              blynite.com/apps/qr-barcode-toolkit/privacy
+            </a>.
+            Public access to this draft does not make it the final or effective
+            policy. Final policy approval and the effective date remain pending.
           </p>
         </>
       ),

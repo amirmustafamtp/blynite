@@ -36,7 +36,7 @@ export default function AppPrivacyDirectory() {
               <li key={policy.slug}>
                 <p className="app-policy-platform">
                   {policy.platform}
-                  {policy.status === "preview"
+                  {policy.status !== "published"
                     ? " · DRAFT — NOT FOR PUBLICATION"
                     : ""}
                 </p>
