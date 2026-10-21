@@ -287,7 +287,7 @@ export function ContactForm({
         />
         <span>
           I agree to Blynite using these details to respond to my inquiry. Read
-          the <Link href="/privacy">draft Privacy Policy</Link>. Please do not
+          the <Link href="/privacy">Privacy Policy</Link>. Please do not
           include sensitive or confidential information.
         </span>
       </label>
