@@ -120,6 +120,7 @@ export function ContactForm({
     }
   }
   const attributes = (field: keyof InquiryErrors) => ({
+    disabled: !available,
     "aria-invalid": Boolean(errors[field]),
     "aria-describedby": errors[field] ? `${field}-error` : undefined,
   });
@@ -129,38 +130,6 @@ export function ContactForm({
         {errors[field]}
       </p>
     );
-  if (!available) {
-    return (
-      <div
-        className="contact-panel"
-        aria-labelledby="contact-unavailable-title"
-      >
-        <h2 id="contact-unavailable-title">
-          Online inquiries are not open yet.
-        </h2>
-        <p>You can’t send a project inquiry through this page right now.</p>
-        {email ? (
-          <>
-            <p>You can email us about your project instead.</p>
-            <a className="button button-primary" href={`mailto:${email}`}>
-              Email Blynite <ArrowUpRight size={18} aria-hidden="true" />
-            </a>
-            <p className="contact-email">{email}</p>
-          </>
-        ) : (
-          <>
-            <p>
-              Please check back later. In the meantime, explore how we can help
-              with your project.
-            </p>
-            <Link className="button button-primary" href="/services">
-              Explore services <ArrowUpRight size={18} aria-hidden="true" />
-            </Link>
-          </>
-        )}
-      </div>
-    );
-  }
   if (status?.success) {
     return (
       <div
@@ -187,11 +156,23 @@ export function ContactForm({
       onSubmit={submit}
       noValidate
       aria-label="Project inquiry"
+      aria-describedby={!available ? "contact-unavailable" : undefined}
     >
       <div className="contact-form-intro">
         <h2>Tell us about your idea.</h2>
         <p>All fields are required unless marked optional.</p>
       </div>
+      {!available && (
+        <div className="form-notice" id="contact-unavailable">
+          <strong>Online inquiries are not open yet.</strong>
+          <p>The form is shown below, but sending is currently unavailable.</p>
+          {email && (
+            <p>
+              You can email us at <a href={`mailto:${email}`}>{email}</a>.
+            </p>
+          )}
+        </div>
+      )}
       <div aria-live="polite" aria-atomic="true">
         {status && (
           <div
@@ -336,7 +317,7 @@ export function ContactForm({
             Sending inquiry
             <LoaderCircle size={18} aria-hidden="true" />
           </>
-        ) : !ready ? (
+        ) : available && !ready ? (
           <>
             Preparing form <LoaderCircle size={18} aria-hidden="true" />
           </>
@@ -348,7 +329,9 @@ export function ContactForm({
         )}
       </button>
       <p className="submit-note">
-        We’ll use your email to follow up about your project.
+        {available
+          ? "We’ll use your email to follow up about your project."
+          : "Online inquiries will be available here once sending is enabled."}
         {email && (
           <>
             {" "}

@@ -118,7 +118,7 @@ test("keyboard skip link and mobile navigation support focus, Escape, and naviga
   await expect(menu).not.toBeVisible();
 });
 
-test("unavailable contact page does not invite data entry or acknowledge delivery", async ({
+test("unconfigured contact form stays visible without accepting or sending inquiries", async ({
   page,
   request,
 }) => {
@@ -126,17 +126,23 @@ test("unavailable contact page does not invite data entry or acknowledge deliver
   await expect(
     page.getByText("Online inquiries are not open yet."),
   ).toBeVisible();
-  await expect(page.getByRole("form", { name: "Project inquiry" })).toHaveCount(
-    0,
+  await expect(
+    page.getByRole("form", { name: "Project inquiry" }),
+  ).toBeVisible();
+  await expect(page.getByLabel("Full name", { exact: true })).toBeVisible();
+  for (const field of await page
+    .locator(
+      ".form-grid input, .form-grid select, .form-grid textarea, .form-consent input",
+    )
+    .all()) {
+    await expect(field).toBeDisabled();
+  }
+  await expect(page.getByLabel("Service of interest")).toHaveValue(
+    "ai-automation",
   );
   await expect(
-    page.locator("main input, main textarea, main select"),
-  ).toHaveCount(0);
-  await expect(
-    page
-      .locator(".contact-panel")
-      .getByRole("link", { name: "Explore services" }),
-  ).toHaveAttribute("href", "/services");
+    page.getByRole("button", { name: "Send inquiry" }),
+  ).toBeDisabled();
   const response = await request.post("/api/contact", {
     headers: { Origin: "https://blynite.com" },
     data: {},
