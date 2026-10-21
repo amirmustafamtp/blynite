@@ -8,7 +8,7 @@ import { site } from "@/data/site";
 export const metadata: Metadata = {
   metadataBase: new URL(site.url),
   title: {
-    default: "Blynite — Engineering What's Next.",
+    default: `Blynite — ${site.tagline}`,
     template: "%s | Blynite",
   },
   description: site.description,

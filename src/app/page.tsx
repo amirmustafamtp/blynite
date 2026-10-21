@@ -12,11 +12,7 @@ import { SystemVisual } from "@/components/marketing/system-visual";
 import { pageMetadata } from "@/lib/metadata";
 import { site } from "@/data/site";
 
-export const metadata = pageMetadata(
-  "Engineering What's Next.",
-  site.description,
-  "/",
-);
+export const metadata = pageMetadata(site.tagline, site.description, "/");
 export default function HomePage() {
   return (
     <>
@@ -28,9 +24,13 @@ export default function HomePage() {
                 Intelligent by design. Built with purpose.
               </Eyebrow>
               <h1>
-                Engineering
+                Intelligence
                 <br />
-                <span>What’s Next.</span>
+                <span>
+                  Beyond
+                  <br />
+                  Boundaries.
+                </span>
               </h1>
               <p>{site.description}</p>
               <div className="button-row">
