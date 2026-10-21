@@ -1,9 +1,10 @@
 import type { MetadataRoute } from "next";
+import { site } from "@/data/site";
 export default function manifest(): MetadataRoute.Manifest {
   return {
     name: "Blynite",
     short_name: "Blynite",
-    description: "Ignite What's Next.",
+    description: site.tagline,
     start_url: "/",
     display: "standalone",
     background_color: "#061B34",

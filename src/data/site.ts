@@ -1,7 +1,7 @@
 export const site = {
   name: "Blynite",
   url: "https://blynite.com",
-  tagline: "Ignite What's Next.",
+  tagline: "Intelligence Beyond Boundaries.",
   description:
     "We design and build intelligent software, AI-powered solutions, and digital products that turn ambitious ideas into reality.",
 };

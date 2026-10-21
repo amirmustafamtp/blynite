@@ -22,7 +22,7 @@ export function pageMetadata(
           url: "/brand/social-cover.jpg",
           width: 1702,
           height: 630,
-          alt: "Blynite — Ignite What's Next.",
+          alt: `Blynite — ${site.tagline}`,
         },
       ],
     },
