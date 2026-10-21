@@ -24,7 +24,7 @@ npm run start
 
 ## Structure
 
-- `src/app`: home, services, product and case-study routes, about, contact, draft legal pages, SEO endpoints, and contact API.
+- `src/app`: home, services, product and case-study routes, about, contact, privacy policy, draft terms, SEO endpoints, and contact API.
 - `src/components`: navigation, footer, shared UI, contact form, and marketing sections.
 - `src/data/site.ts`: confirmed company information, navigation, process, and expertise.
 - `src/data/services.ts`: six service definitions used by cards and detail pages.
@@ -115,7 +115,7 @@ Do not commit confidential client details or unapproved source material to this 
 
 Canonical URLs, Organization structured data, sitemap, robots, and sharing metadata target `https://blynite.com`. The Organization record contains only confirmed name, domain, logo, tagline, and description. Fonts and brand assets are served locally; no analytics or advertising scripts are installed.
 
-Privacy and Terms are conspicuous **drafts requiring legal review**. They are marked `noindex` and omitted from the sitemap. Confirm the business entity, jurisdiction, providers, retention, privacy contact, and contractual terms before replacing the draft copy. Then update the contact consent link, metadata, and sitemap for approved documents. Staging should be access-controlled or configured `noindex` by the host.
+The Privacy Policy is public and included in the sitemap. It describes the website’s inquiry flow, Vercel hosting, planned Resend delivery when enabled, and the confirmed contact address `info@blynite.com`. Keep it aligned with actual processing and retention practices; publication is not a certification of legal compliance. Terms of Service remain a draft marked `noindex` and excluded from the sitemap. Confirm the business entity, jurisdiction, and contractual terms before publishing final Terms. Staging should be access-controlled or configured `noindex` by the host.
 
 ## Browser verification
 
@@ -145,7 +145,7 @@ Before launch:
 
 1. Configure an approved recipient and delivery provider, then send a real test and verify inbox receipt.
 2. Apply a production gateway rate limit and confirm proxy/IP behavior.
-3. Replace draft legal documents with reviewed versions and publish a confirmed contact channel.
+3. Finalize the Terms of Service and review the Privacy Policy against actual business operations and applicable law.
 4. Add only approved public products/case studies, if available.
 5. Verify the production domain, metadata/share image, mobile menu, contact form, and accessibility after deployment.
 

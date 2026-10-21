@@ -185,12 +185,23 @@ test("unknown and unpublished content is absent; SEO endpoints expose public pag
   }
   const xml = await (await request.get("/sitemap.xml")).text();
   expect(xml).toContain("https://blynite.com/services/ai-automation");
-  expect(xml).not.toContain("/privacy");
+  expect(xml).toContain("https://blynite.com/privacy");
   expect(xml).not.toContain("/terms");
   expect(await (await request.get("/robots.txt")).text()).toContain(
     "Sitemap: https://blynite.com/sitemap.xml",
   );
   await page.goto("/privacy");
+  await expect(page).toHaveTitle("Privacy Policy | Blynite");
+  await expect(page.locator("main")).not.toContainText(
+    /draft|before publication|must be confirmed/i,
+  );
+  await expect(
+    page.locator('meta[name="robots"][content*="noindex"]'),
+  ).toHaveCount(0);
+  await expect(
+    page.locator('main a[href="mailto:info@blynite.com"]').first(),
+  ).toBeVisible();
+  await page.goto("/terms");
   await expect(page.locator('meta[name="robots"]')).toHaveAttribute(
     "content",
     /noindex/,

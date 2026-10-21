@@ -5,70 +5,163 @@ export function LegalPage({ type }: { type: "privacy" | "terms" }) {
   return (
     <>
       <PageHero
-        eyebrow="Legal · Draft for review"
+        eyebrow={privacy ? "Legal" : "Legal · Draft for review"}
         title={privacy ? "Privacy Policy" : "Terms of Service"}
-        description="This document is a working draft. It requires review and approval before the website launches publicly."
+        description={
+          privacy
+            ? "How we handle personal information when you visit our website or contact Blynite."
+            : "This document is a working draft. It requires review and approval before the website launches publicly."
+        }
       />
       <article id="page-content" className="container narrow-content section">
-        <div className="legal-draft">
-          <strong>Draft — not an approved legal policy.</strong>
+        {privacy ? (
           <p>
-            The operating entity, applicable jurisdiction, contact details,
-            service providers, and final terms must be confirmed before this
-            document takes effect.
+            Last updated: <time dateTime="2026-10-21">October 21, 2026</time>
           </p>
-        </div>
+        ) : (
+          <div className="legal-draft">
+            <strong>Draft — not an approved legal policy.</strong>
+            <p>
+              The operating entity, applicable jurisdiction, contact details,
+              service providers, and final terms must be confirmed before this
+              document takes effect.
+            </p>
+          </div>
+        )}
         {privacy ? (
           <>
             <section className="legal-section">
-              <h2>Information in project inquiries</h2>
+              <h2>About this policy</h2>
               <p>
-                The inquiry form asks for your name, email, service of interest,
-                project description, and permission to respond. Company and
-                budget are optional. Please avoid sending sensitive personal
-                information, credentials, or confidential project material.
+                Blynite operates blynite.com. This policy explains how we handle
+                information from website visitors and people who contact us
+                about our software, AI, and digital product services. For
+                privacy questions or requests, email{" "}
+                <a href="mailto:info@blynite.com">info@blynite.com</a>. Separate
+                agreements may apply to information processed as part of a
+                client project or product.
               </p>
             </section>
             <section className="legal-section">
-              <h2>How the website handles inquiries</h2>
+              <h2>Information you share with us</h2>
               <p>
-                When delivery is enabled, the website sends your inquiry through
-                the configured email or delivery service to Blynite so that it
-                can be reviewed and answered. This version of the website does
-                not maintain a lead database. Information may remain in the
-                recipient’s inbox and in the delivery provider’s systems.
-                Provider identities, retention periods, and any international
-                transfers must be documented before launch.
+                Our project inquiry form asks for your name, business email,
+                service of interest, project description, and permission to
+                respond. Company name and budget are optional. If you contact us
+                by email, we receive your email address, message, and any
+                information you include. Please avoid sending passwords,
+                sensitive personal information, or confidential project material
+                through the initial inquiry form.
+              </p>
+              <p>
+                Entering text in the form does not send an inquiry. Form details
+                are transmitted when you submit them with sending enabled.
               </p>
             </section>
             <section className="legal-section">
-              <h2>Technical data and security</h2>
+              <h2>How we use information</h2>
               <p>
-                The website uses short-lived form tokens, a hidden spam field,
-                and temporary server memory to limit repeated submissions.
-                Hosting infrastructure may process request information such as
-                IP addresses and technical logs. The hosting provider and its
-                logging settings must be confirmed before this policy is
-                finalized.
+                We use inquiry details to understand your needs, respond to
+                questions, discuss potential projects, and manage related
+                correspondence. We also process technical information to operate
+                the website, investigate errors, and protect it from spam and
+                abuse. Submitting an inquiry does not subscribe you to a
+                marketing mailing list.
+              </p>
+              <p>
+                Where a legal basis is required, we rely on steps you request
+                before entering a contract, our legitimate interests in
+                answering business inquiries and securing our website, and
+                consent where required. We may also process information to meet
+                legal obligations.
               </p>
             </section>
             <section className="legal-section">
-              <h2>Cookies and measurement</h2>
+              <h2>Hosting and email delivery</h2>
               <p>
-                This implementation does not add advertising trackers or
-                analytics, and does not set application cookies. The deployed
-                site and any future third-party services must be reviewed before
-                making a final statement about cookies or tracking.
+                Vercel hosts our website and may process technical request data,
+                including IP addresses, browser information, requested URLs, and
+                diagnostic logs. When contact-form delivery is enabled, Resend
+                processes your inquiry to deliver it to Blynite’s email inbox.
+                Our email service also processes messages we receive and send.
+                The website does not maintain a separate lead database.
+              </p>
+              <p>
+                These services process information needed to provide hosting,
+                security, and communications. Read the{" "}
+                <a href="https://vercel.com/legal/privacy-notice">
+                  Vercel Privacy Notice
+                </a>{" "}
+                and{" "}
+                <a href="https://resend.com/legal/privacy-policy">
+                  Resend Privacy Policy
+                </a>{" "}
+                for their privacy information. We may also disclose information
+                when legally required or necessary to protect our legal rights.
               </p>
             </section>
             <section className="legal-section">
-              <h2>Your choices and requests</h2>
+              <h2>Cookies and technical information</h2>
               <p>
-                You can choose not to submit an inquiry. The final policy must
-                explain applicable privacy rights, how to request access or
-                deletion, and the verified contact channel for those requests.
-                No privacy contact address has been approved for publication
-                yet.
+                We do not add advertising trackers or analytics tools to this
+                website, and the website application does not set cookies.
+                Hosting and security services may process technical information
+                needed to serve and protect the site. The contact form uses
+                temporary security tokens and spam-prevention checks to limit
+                automated submissions.
+              </p>
+            </section>
+            <section className="legal-section">
+              <h2>Retention and security</h2>
+              <p>
+                We retain correspondence for as long as needed to respond,
+                manage the business relationship, resolve disputes, and meet
+                legal obligations. Retention depends on the purpose of the
+                correspondence and applicable requirements. Copies may also
+                remain in email and service-provider systems under their
+                retention settings.
+              </p>
+              <p>
+                We use HTTPS, server-side validation, and access controls for
+                delivery credentials to protect inquiries. No online service can
+                guarantee absolute security. Contact us if you believe
+                information sent to Blynite has been exposed or misused.
+              </p>
+            </section>
+            <section className="legal-section">
+              <h2>International processing</h2>
+              <p>
+                Our service providers may process information outside your
+                country, where data protection laws may differ. Contact us for
+                information about processing locations and any safeguards
+                applicable to your information.
+              </p>
+            </section>
+            <section className="legal-section">
+              <h2>Your choices and privacy rights</h2>
+              <p>
+                You can choose not to submit an inquiry. Depending on applicable
+                law, you may request access, correction, deletion, restriction,
+                or portability of your information, or object to processing.
+                Where processing relies on consent, you may withdraw it without
+                affecting earlier lawful processing. You may also complain to
+                your local data protection authority.
+              </p>
+              <p>
+                Send requests to{" "}
+                <a href="mailto:info@blynite.com">info@blynite.com</a>. We may
+                need to verify your identity and understand your request before
+                responding. Some information may need to be retained where
+                required by law.
+              </p>
+            </section>
+            <section className="legal-section">
+              <h2>Changes to this policy</h2>
+              <p>
+                We may update this policy as our website, services, or legal
+                obligations change. The date above identifies the latest update.
+                We will provide additional notice where required by applicable
+                law.
               </p>
             </section>
           </>
@@ -123,14 +216,16 @@ export function LegalPage({ type }: { type: "privacy" | "terms" }) {
             </section>
           </>
         )}
-        <section className="legal-section">
-          <h2>Before publication</h2>
-          <p>
-            Replace this draft with reviewed terms reflecting Blynite’s actual
-            operations. For general project information, visit our{" "}
-            <Link href="/contact">contact page</Link>.
-          </p>
-        </section>
+        {!privacy && (
+          <section className="legal-section">
+            <h2>Before publication</h2>
+            <p>
+              Replace this draft with reviewed terms reflecting Blynite’s actual
+              operations. For general project information, visit our{" "}
+              <Link href="/contact">contact page</Link>.
+            </p>
+          </section>
+        )}
       </article>
     </>
   );

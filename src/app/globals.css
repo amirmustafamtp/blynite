@@ -1536,6 +1536,9 @@ svg {
   font-size: 16px;
   color: var(--muted);
 }
+.legal-section p + p {
+  margin-top: 16px;
+}
 .legal-section a {
   color: #086d98;
   text-decoration: underline;
