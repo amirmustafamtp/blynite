@@ -124,9 +124,6 @@ test("unconfigured contact form allows editing while sending stays disabled", as
 }) => {
   await page.goto("/contact?service=ai-automation");
   await expect(
-    page.getByText("Online inquiries are not open yet."),
-  ).toBeVisible();
-  await expect(
     page.getByRole("form", { name: "Project inquiry" }),
   ).toBeVisible();
   await expect(page.getByLabel("Full name", { exact: true })).toBeVisible();

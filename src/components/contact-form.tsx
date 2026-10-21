@@ -155,25 +155,11 @@ export function ContactForm({
       onSubmit={submit}
       noValidate
       aria-label="Project inquiry"
-      aria-describedby={!available ? "contact-unavailable" : undefined}
     >
       <div className="contact-form-intro">
         <h2>Tell us about your idea.</h2>
         <p>All fields are required unless marked optional.</p>
       </div>
-      {!available && (
-        <div className="form-notice" id="contact-unavailable">
-          <strong>Online inquiries are not open yet.</strong>
-          <p>
-            You can fill out the fields, but sending is currently unavailable.
-          </p>
-          {email && (
-            <p>
-              You can email us at <a href={`mailto:${email}`}>{email}</a>.
-            </p>
-          )}
-        </div>
-      )}
       <div aria-live="polite" aria-atomic="true">
         {status && (
           <div
