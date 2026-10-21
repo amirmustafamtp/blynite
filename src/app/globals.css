@@ -191,6 +191,9 @@ svg {
 .brand img {
   width: 100%;
 }
+.brand.brand-wordmark {
+  width: 170px;
+}
 .desktop-nav {
   display: flex;
   align-items: center;
@@ -1853,6 +1856,9 @@ svg {
   .brand {
     width: 200px;
     margin-left: -4px;
+  }
+  .brand.brand-wordmark {
+    width: 156px;
   }
   .mobile-nav {
     top: 72px;

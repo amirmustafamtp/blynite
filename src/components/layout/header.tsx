@@ -63,7 +63,7 @@ export function Header() {
   return (
     <header className="site-header">
       <div className="container header-inner">
-        <Logo />
+        <Logo variant="wordmark" />
         <nav aria-label="Main navigation" className="desktop-nav">
           {navigation.map((item) => (
             <Link

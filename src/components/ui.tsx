@@ -14,13 +14,24 @@ import {
 import type { ReactNode } from "react";
 import type { Service } from "@/data/services";
 
-export function Logo({ dark = true }: { dark?: boolean }) {
+export function Logo({
+  dark = true,
+  variant = "full",
+}: {
+  dark?: boolean;
+  variant?: "full" | "wordmark";
+}) {
+  const wordmark = variant === "wordmark";
   return (
-    <Link href="/" className="brand" aria-label="Blynite home">
+    <Link
+      href="/"
+      className={`brand${wordmark ? " brand-wordmark" : ""}`}
+      aria-label="Blynite home"
+    >
       <Image
-        src={`/brand/logo-${dark ? "white" : "navy"}.svg`}
+        src={`/brand/${wordmark ? "wordmark" : "logo"}-${dark ? "white" : "navy"}.svg`}
         alt="Blynite"
-        width={1821}
+        width={wordmark ? 1428 : 1821}
         height={437}
         priority
       />
