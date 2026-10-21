@@ -39,7 +39,6 @@ export default async function Contact({
             initialService={
               services.some((item) => item.slug === service) ? service : ""
             }
-            email={publicEmail}
           />
           <aside className="contact-aside">
             <Eyebrow>A good place to start</Eyebrow>

@@ -9,11 +9,9 @@ import { budgets, validateInquiry, type InquiryErrors } from "@/lib/contact";
 export function ContactForm({
   available,
   initialService = "",
-  email,
 }: {
   available: boolean;
   initialService?: string;
-  email?: string;
 }) {
   const [errors, setErrors] = useState<InquiryErrors>({});
   const [status, setStatus] = useState<{
@@ -315,17 +313,6 @@ export function ContactForm({
           </>
         )}
       </button>
-      <p className="submit-note">
-        {available
-          ? "We’ll use your email to follow up about your project."
-          : "Online inquiries will be available here once sending is enabled."}
-        {email && (
-          <>
-            {" "}
-            Prefer email? <a href={`mailto:${email}`}>{email}</a>
-          </>
-        )}
-      </p>
     </form>
   );
 }
