@@ -121,7 +121,7 @@ The Privacy Policy is public and included in the sitemap. It describes the websi
 
 - Directory: `/apps/privacy` (linked as **App Privacy** in the footer).
 - Individual policy: `/apps/<app-slug>/privacy`.
-- QR & Barcode Toolkit: `/apps/qr-barcode-toolkit/privacy`.
+- QR & Barcode Toolkit local preview: `/apps/qr-barcode-toolkit/privacy`; its public policy URL remains pending owner approval.
 - Website privacy stays at `/privacy`; app policy content is maintained separately.
 
 Add a typed content file in `src/data/app-policies/` and register it in `index.ts`.
@@ -131,14 +131,20 @@ layout, table of contents, canonical metadata, and unknown-app 404 responses.
 Published policies automatically appear in the directory and sitemap.
 
 The supplied QR policy is currently `preview`: it is visible only with `npm run dev`,
-has `noindex` metadata, and returns 404 in production. The production directory
+is marked **DRAFT — NOT FOR PUBLICATION**, has `noindex` metadata without a
+public canonical/share URL, and returns 404 in production. The production directory
 does not list preview entries. No environment switch enables them in production.
 Internal reviewer notes and the original draft attachment are not served or copied
 into public assets. Do not use the QR URL in a store listing until it is published.
 
-To publish QR's policy, resolve the supplied draft's SDK diagnostic handling,
-children's privacy wording, support-request processing, and effective date. Verify
-the support contact and covered release. Replace the pending preview text in
+The owner confirmed on October 22, 2026 that no final QR policy is approved.
+Confirmed identity: Blynite, support@blynite.com, blynite.com, intended audience 13+.
+Do not publish or treat this preview as final without explicit owner approval.
+Do not promise zero collection/transmission, specific response times, or deletion
+of Google-held data. Before requesting publication approval, resolve SDK diagnostic
+handling, children's privacy wording, support/privacy-request monitoring, handling
+and retention, the effective date, and the public policy URL. Verify the covered
+release. Only after owner approval, replace the pending preview text in
 `qr-barcode-toolkit.tsx`, set `status: "published"` and an approved ISO effective
 date (`YYYY-MM-DD`), then build and deploy. Keep future policy edits aligned with
 each app's actual behavior. Update the preview-specific browser assertions when

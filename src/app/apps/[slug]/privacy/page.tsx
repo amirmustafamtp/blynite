@@ -27,11 +27,18 @@ export async function generateMetadata({
   params: Promise<{ slug: string }>;
 }) {
   const policy = await getPolicy(params);
+  if (policy.status === "preview") {
+    return {
+      title: `${policy.name} Privacy Policy — Draft`,
+      description:
+        "DRAFT — NOT FOR PUBLICATION. Local policy preview awaiting owner approval.",
+      robots: { index: false, follow: false },
+    };
+  }
   return pageMetadata(
     `${policy.name} Privacy Policy`,
     policy.summary,
     appPrivacyPath(policy.slug),
-    policy.status !== "published",
   );
 }
 
@@ -57,10 +64,11 @@ export default async function AppPrivacyPage({
         </Link>
         {policy.status === "preview" && (
           <aside className="legal-draft" aria-label="Policy preview status">
-            <strong>Policy preview — not yet effective</strong>
+            <strong>DRAFT — NOT FOR PUBLICATION</strong>
             <p>
-              This policy is being reviewed and is not yet effective. This
-              preview is available only in local development.
+              This policy is awaiting owner approval and is not yet effective.
+              The public privacy-policy URL is pending. This preview is
+              available only in local development.
             </p>
           </aside>
         )}

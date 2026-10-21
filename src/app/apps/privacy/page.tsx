@@ -36,7 +36,9 @@ export default function AppPrivacyDirectory() {
               <li key={policy.slug}>
                 <p className="app-policy-platform">
                   {policy.platform}
-                  {policy.status === "preview" ? " · Local preview" : ""}
+                  {policy.status === "preview"
+                    ? " · DRAFT — NOT FOR PUBLICATION"
+                    : ""}
                 </p>
                 <h2>
                   <Link href={appPrivacyPath(policy.slug)}>{policy.name}</Link>

@@ -38,11 +38,18 @@ test("app policy preview is readable and accessible on mobile and desktop", asyn
     "content",
     /noindex/,
   );
-  await expect(page.locator('link[rel="canonical"]')).toHaveAttribute(
-    "href",
-    `https://blynite.com${policyPath}`,
-  );
+  await expect(page.locator('link[rel="canonical"]')).toHaveCount(0);
+  await expect(page.locator('meta[property="og:url"]')).toHaveCount(0);
   await expect(page.getByLabel("Policy preview status")).toBeVisible();
+  await expect(page.getByLabel("Policy preview status")).toContainText(
+    "DRAFT — NOT FOR PUBLICATION",
+  );
+  await expect(page.locator("#policy-location")).toContainText(
+    "pending owner approval",
+  );
+  await expect(
+    page.locator(`main a[href="https://blynite.com${policyPath}"]`),
+  ).toHaveCount(0);
   await expect(page.locator("main")).not.toContainText(
     /TODO:|INTERNAL REVIEWER NOTES|Future Connect|fc\.net\.pk|\/Users\//,
   );

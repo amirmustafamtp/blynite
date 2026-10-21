@@ -296,7 +296,7 @@ export const qrBarcodeToolkitPolicy: AppPrivacyPolicy = {
           </p>
           <p>
             {
-              "The privacy-request process and handling of inquiry information are awaiting confirmation. This preview does not promise a response deadline or the ability to retrieve or delete third-party SDK records."
+              "How support and privacy requests are monitored, handled, and retained is awaiting confirmation. This draft does not promise a response deadline or the ability to retrieve or delete Google-held or other third-party SDK records."
             }
           </p>
         </>
@@ -308,11 +308,10 @@ export const qrBarcodeToolkitPolicy: AppPrivacyPolicy = {
       content: (
         <>
           <p>
-            {"The dedicated address for this app’s privacy policy is "}
-            <a href="https://blynite.com/apps/qr-barcode-toolkit/privacy">
-              {"blynite.com/apps/qr-barcode-toolkit/privacy"}
-            </a>
-            {". The preview is not yet an effective public policy."}
+            Public privacy-policy URL: pending owner approval. The local preview
+            route is for review only and is not an approved public policy
+            address. This draft must not be published or treated as the final
+            policy without the owner’s approval.
           </p>
         </>
       ),
