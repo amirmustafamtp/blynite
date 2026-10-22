@@ -146,9 +146,16 @@ are not served or copied into public assets.
 
 Confirmed identity: Blynite, support@blynite.com, blynite.com, intended audience 13+.
 Do not promise zero collection/transmission, specific response times, or deletion
-of Google-held data. Before final approval, resolve SDK diagnostic handling,
-children's privacy wording, support/privacy-request monitoring, handling and
-retention, and the effective date. Verify the covered release. Only after final
+of Google-held data. The updated October 22 source includes the documented ML Kit
+baseline for Diagnostics, Device or other IDs, and App interactions, while retaining
+the lack of runtime transmission verification. It also includes approved children's
+wording and support clauses: Namecheap-hosted email, correspondence retention within
+90 days after closure, and a minimal case record for up to 12 months. The draft's
+operational/provider verification qualifications remain visible; internal response
+targets remain excluded. These periods do not apply to app history or Google SDK data.
+Before final approval, verify support operations and provider retention/deletion,
+review policy and app consistency, and approve the final URL and effective date.
+Verify the covered release. Only after final
 owner approval, replace pending text, set `status: "published"` and an approved
 ISO effective date (`YYYY-MM-DD`), then build and deploy. Keep future policy edits
 aligned with each app's actual behavior.

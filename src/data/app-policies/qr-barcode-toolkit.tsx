@@ -19,7 +19,7 @@ export const qrBarcodeToolkitPolicy: AppPrivacyPolicy = {
         <>
           <p>
             {
-              "This policy describes how QR & Barcode Toolkit for Android handles camera images, scanned and generated content, local history and settings, and content you choose to copy, export or share. Third-party SDK behavior is addressed separately below. This version has no app account or app-managed cloud-history feature."
+              "This policy describes how this version of QR & Barcode Toolkit handles camera images, scanned and generated content, local history and settings, and content you choose to copy, export or share. Third-party SDK behavior is addressed separately below. This version does not support account creation, login with an external account, or app-managed cloud history."
             }
           </p>
         </>
@@ -161,40 +161,83 @@ export const qrBarcodeToolkitPolicy: AppPrivacyPolicy = {
     },
     {
       id: "third-party-libraries-diagnostics-and-possible-transmissions",
-      title: "Third-party libraries, diagnostics and possible transmissions",
+      title: "Third-party libraries and SDK data handling",
       content: (
         <>
           <p>
-            {"The app uses Google's bundled ML Kit Barcode Scanning SDK. "}
+            {
+              "The app uses Google's bundled ML Kit Barcode Scanning SDK, version 17.3.0. "
+            }
             <a href="https://developers.google.com/ml-kit/terms">
               {"Google's ML Kit privacy documentation"}
             </a>
             {
-              " states that input images/text and resulting outputs are processed on-device and are not sent to Google servers. Separately, it describes SDK metrics sent to Google and possible server contacts for SDK maintenance and compatibility. This is Google's published description, not a measurement of this app's network activity."
+              " describes recognition as on-device processing: input images/text and recognition results are not sent to Google servers by ML Kit. The app separately stores accepted results in local history and lets you choose the copying, exporting and sharing actions described above."
             }
           </p>
           <p>
+            {"Google also documents SDK metrics sent to Google. Based on "}
             <a href="https://developers.google.com/ml-kit/android-data-disclosure">
-              {"Google's Android SDK disclosure"}
+              {"Google's SDK disclosure"}
             </a>
             {
-              " lists device/OS/accelerator information, app package/version, per-installation identifiers, timing, API configuration, input/output sizes, feature versions, events and error codes for diagnostics and usage analytics. Sizes are not the content itself. Google describes HTTPS protection for the listed transmissions. These descriptions do not establish which events occur or reach Google from this particular configuration."
+              ", our Data safety answers include these types as data the SDK may collect and share with Google:"
             }
           </p>
-          <p>
-            {"The reviewed build does not request Internet permission. "}
-            <strong>
+          <ul>
+            <li>
+              <strong>{"Diagnostics:"}</strong>
               {
-                "The effect of that restriction on actual SDK diagnostic transmissions has not been verified."
+                " technical information such as device/model and Android version, available accelerators, app package/version, processing times, API configuration, input/output sizes, SDK versions and error codes. Input/output sizes describe amounts of data rather than QR contents."
               }
+            </li>
+            <li>
+              <strong>{"Device or other IDs:"}</strong>
+              {
+                " an identifier associated with the SDK's installation in the app. This does not require an app account."
+              }
+            </li>
+            <li>
+              <strong>{"App interactions:"}</strong>
+              {
+                " SDK feature-use events, such as initialization, barcode detection and resource release. This describes SDK utilization, without asserting an app-wide record of screen taps or uploading your local search queries."
+              }
+            </li>
+          </ul>
+          <p>
+            {
+              "Google describes using SDK metrics to assess, maintain and improve its APIs and detect misuse or abuse. Our declaration reflects "
+            }
+            <strong>
+              {"analytics and fraud prevention, security and compliance"}
             </strong>
             {
-              " This draft does not assert either that this app definitely transmits those diagnostics or that SDK transmission is impossible. SDK-local storage, transmission paths and retention remain unresolved before publication."
+              " purposes. Sharing here includes sending these metrics to Google. Google's separate statement that it does not transfer the listed data onward to third parties does not remove that initial transfer from our disclosure."
+            }
+          </p>
+          <p>
+            {"Google states that the listed metric transmissions use "}
+            <strong>{"HTTPS encryption in transit"}</strong>
+            {
+              ". This statement concerns the SDK metrics; local storage and other apps or document providers have the separate boundaries described in this policy."
+            }
+          </p>
+          <p>
+            {"The app has "}
+            <strong>{"no setting to turn off SDK diagnostics"}</strong>
+            {
+              ", and our declaration treats this handling as required and non-ephemeral. We do not promise that the records exist only in memory during a scan. Declining camera access is not established as disabling all SDK initialization or metric handling. We have not established a specific SDK/server retention period or a Blynite-operated mechanism for deleting Google-held SDK records."
+            }
+          </p>
+          <p>
+            <strong>{"Draft evidence qualification:"}</strong>
+            {
+              " the reviewed release does not request Internet permission. We have not verified which documented metrics actually reach Google under that configuration, including possible handling through another process. The disclosure uses Google's documented SDK baseline rather than promising that transmission is impossible or claiming a successful upload was observed. Exact delivery paths and retention remain technical follow-ups."
             }
           </p>
           <p>
             {
-              "The app also uses Android CameraX for camera access, ZXing Core for QR encoding, Room for local history, and DataStore for settings. ML Kit brings Play-services, DataTransport and Firebase component/encoding support. Those support components are not a Firebase Analytics or Crashlytics integration. This version has no AdMob integration or app-added analytics/crash-reporting service. That distinction does not resolve ML Kit's own diagnostics."
+              "The app also uses CameraX, ZXing Core, Room and DataStore. ML Kit includes Play-services, DataTransport and Firebase component/encoding support. There is no AdMob or app-added Firebase Analytics/Crashlytics integration in this version. The SDK metrics described here remain part of the disclosure. Barcode auto-zoom is not enabled."
             }
           </p>
         </>
@@ -226,7 +269,12 @@ export const qrBarcodeToolkitPolicy: AppPrivacyPolicy = {
           </p>
           <p>
             {
-              "The app is configured to exclude its private data from Android cloud backup and device transfer. This is not a guarantee about every device manufacturer's behavior or files managed by another provider. No specific retention period or developer-operated deletion capability for SDK-held information has been established in this draft."
+              "The app is configured to exclude its private data from Android cloud backup and device transfer. This is not a guarantee about every device manufacturer's behavior or files managed by another provider."
+            }
+          </p>
+          <p>
+            {
+              "The local controls above do not provide a verified way to request deletion of the SDK metrics held by Google or remove records held by another process. We do not claim that those metrics are automatically deleted within 90 days. The support-record periods in section 12 apply to Blynite-controlled correspondence and case records, not to app history or Google-held SDK information."
             }
           </p>
         </>
@@ -269,11 +317,19 @@ export const qrBarcodeToolkitPolicy: AppPrivacyPolicy = {
       content: (
         <>
           <p>
-            {"QR & Barcode Toolkit is intended for people aged "}
-            <strong>{"13 and over"}</strong>
-            {"."}
+            {
+              "QR & Barcode Toolkit is intended for people aged 13 and over and is not intended for children under 13. The sections of this policy about local storage, sharing and third-party SDKs also apply to users aged 13–17."
+            }
           </p>
-          <p>{"The final children’s privacy statement is awaiting review."}</p>
+          <p>
+            {
+              "If you are a parent or guardian with a concern about your child's personal information, contact "
+            }
+            <a href="mailto:support@blynite.com">{"support@blynite.com"}</a>
+            {
+              ". Please describe the concern without sending passwords, private QR contents, identity documents or unnecessary details about the child. We will review the request and explain the actions available for information we control."
+            }
+          </p>
         </>
       ),
     },
@@ -284,19 +340,37 @@ export const qrBarcodeToolkitPolicy: AppPrivacyPolicy = {
         <>
           <p>
             {
-              "For privacy questions or help with the app’s local data controls, contact "
+              "For help with QR & Barcode Toolkit, privacy questions, or a request about information you have sent directly to Blynite, email "
             }
             <a href="mailto:support@blynite.com">{"support@blynite.com"}</a>
-            {"."}
-          </p>
-          <p>
             {
-              "Avoid including Wi-Fi passwords, private QR payloads or unrelated personal information in an inquiry."
+              ". Please include the app name and a brief description of your request. Do not send Wi-Fi passwords, private QR contents, identity documents or unrelated personal information."
             }
           </p>
           <p>
             {
-              "How support and privacy requests are monitored, handled, and retained is awaiting confirmation. This draft does not promise a response deadline or the ability to retrieve or delete Google-held or other third-party SDK records."
+              "Blynite's dedicated support staff handle inquiries through this address, hosted with Namecheap."
+            }
+          </p>
+          <p>
+            {
+              "When you contact us, we receive your email address, message and any information or attachments you choose to provide. We use this information to respond, investigate the issue and handle your request. Access is limited to authorized people handling the request and the email or support providers used to operate that service."
+            }
+          </p>
+          <p>
+            {
+              "We may ask for limited additional information when reasonably needed to identify the relevant correspondence or protect another person's information. We can help explain the app's local data controls, but do not have a remote service for accessing or deleting the history stored on your device. Deleting Blynite-held correspondence does not remove exported QR images, copies held by other apps, or data independently held by a third-party SDK provider."
+            }
+          </p>
+          <p>
+            {
+              "We normally delete support correspondence and attachments within 90 days after a request is closed. We retain a minimal record of the request type, dates and outcome for up to 12 months after closure. If specific information must be retained to meet a legal obligation, we limit its use and retention to that purpose."
+            }
+          </p>
+          <p>
+            <strong>{"Draft qualification:"}</strong>
+            {
+              " these are owner-approved periods for Blynite-controlled support records, not verified deletion results or periods for app history or SDK data. Namecheap's deleted-mail and backup retention/deletion behavior remains under verification. No claim is made that all provider copies disappear within these periods. The actual support workflow must be verified before final publication; this qualification must be resolved into accurate final wording."
             }
           </p>
         </>
@@ -308,12 +382,15 @@ export const qrBarcodeToolkitPolicy: AppPrivacyPolicy = {
       content: (
         <>
           <p>
-            This draft is available for review at{" "}
-            <a href="https://blynite.com/apps/qr-barcode-toolkit/privacy">
-              blynite.com/apps/qr-barcode-toolkit/privacy
-            </a>.
-            Public access to this draft does not make it the final or effective
-            policy. Final policy approval and the effective date remain pending.
+            <strong>{"Current policy preview:"}</strong>{" "}
+            <a href="https://www.blynite.com/apps/qr-barcode-toolkit/privacy">
+              {"www.blynite.com/apps/qr-barcode-toolkit/privacy"}
+            </a>
+          </p>
+          <p>
+            {
+              "This address hosts a review draft, not an approved or effective final policy. Final policy approval, the effective date, and approval of the final policy URL remain pending."
+            }
           </p>
         </>
       ),

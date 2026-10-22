@@ -44,10 +44,31 @@ test("app policy preview is readable and accessible on mobile and desktop", asyn
     "Final policy approval",
   );
   await expect(
-    page.locator(`main a[href="https://blynite.com${policyPath}"]`),
+    page.locator(`main a[href="https://www.blynite.com${policyPath}"]`),
   ).toHaveCount(1);
   await expect(page.locator("main")).not.toContainText(
-    /TODO:|INTERNAL REVIEWER NOTES|Future Connect|fc\.net\.pk|\/Users\//,
+    /TODO:|INTERNAL REVIEWER NOTES|Future Connect|fc\.net\.pk|\/Users\/|2 business days|30 calendar days|release-checklist/,
+  );
+  const sdk = page.locator(
+    "#third-party-libraries-diagnostics-and-possible-transmissions",
+  );
+  await expect(sdk).toContainText("17.3.0");
+  await expect(sdk).toContainText("App interactions");
+  await expect(sdk).toContainText(
+    "We have not verified which documented metrics actually reach Google",
+  );
+  await expect(page.locator("#children-s-privacy")).toContainText(
+    "users aged 13–17",
+  );
+  const support = page.locator("#contact-and-privacy-requests");
+  await expect(support).toContainText("Namecheap");
+  await expect(support).toContainText(
+    "within 90 days after a request is closed",
+  );
+  await expect(support).toContainText("up to 12 months after closure");
+  await expect(support).toContainText("not verified deletion results");
+  await expect(page.locator("#retention-and-deletion")).toContainText(
+    "not to app history or Google-held SDK information",
   );
   await expect(page.locator("main")).toContainText(
     "Clear history preserves favorites",
