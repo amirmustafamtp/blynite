@@ -144,6 +144,11 @@ existing draft, not claims that the unresolved details have been verified or tha
 it is a final effective policy. Internal reviewer notes and the original attachment
 are not served or copied into public assets.
 
+The QR entry sets `hideDraftNotice: true` at the owner's request to hide the
+page's draft box. This presentation setting does not change its public-preview
+status, metadata, effective date, or policy qualifications. Other app entries
+show the draft box by default until published.
+
 Confirmed identity: Blynite, support@blynite.com, blynite.com, intended audience 13+.
 Do not promise zero collection/transmission, specific response times, or deletion
 of Google-held data. The updated October 22 source includes the documented ML Kit

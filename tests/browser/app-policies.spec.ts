@@ -36,10 +36,7 @@ test("app policy preview is readable and accessible on mobile and desktop", asyn
   );
   await expect(page.locator('link[rel="canonical"]')).toHaveCount(0);
   await expect(page.locator('meta[property="og:url"]')).toHaveCount(0);
-  await expect(page.getByLabel("Policy preview status")).toBeVisible();
-  await expect(page.getByLabel("Policy preview status")).toContainText(
-    "DRAFT — NOT FOR PUBLICATION",
-  );
+  await expect(page.getByLabel("Policy preview status")).toHaveCount(0);
   await expect(page.locator("#policy-location")).toContainText(
     "Final policy approval",
   );
@@ -117,6 +114,7 @@ test("production serves the authorized public draft without indexing it", async 
   expect(html).toContain("DRAFT — NOT FOR PUBLICATION");
   expect(html).toContain("noindex");
   expect(html).toContain("Pending final approval");
+  expect(html).not.toContain('aria-label="Policy preview status"');
   expect(html).not.toContain("available only in local development");
   const directory = await request.get(`${base}/apps/privacy`);
   expect(directory.status()).toBe(200);

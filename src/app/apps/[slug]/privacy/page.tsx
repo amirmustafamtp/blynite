@@ -62,7 +62,7 @@ export default async function AppPrivacyPage({
         <Link href="/apps/privacy" className="text-link">
           All app privacy policies
         </Link>
-        {policy.status !== "published" && (
+        {policy.status !== "published" && !policy.hideDraftNotice && (
           <aside className="legal-draft" aria-label="Policy preview status">
             <strong>DRAFT — NOT FOR PUBLICATION</strong>
             <p>

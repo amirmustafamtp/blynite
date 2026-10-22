@@ -10,6 +10,7 @@ export const qrBarcodeToolkitPolicy: AppPrivacyPolicy = {
   summary:
     "How QR & Barcode Toolkit handles scanning, generated codes, local history, and content you choose to share.",
   status: "public-preview",
+  hideDraftNotice: true,
   effectiveDate: null,
   sections: [
     {
