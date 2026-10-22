@@ -59,9 +59,11 @@ export default async function AppPrivacyPage({
         id="page-content"
         className="container narrow-content section app-policy"
       >
-        <Link href="/apps/privacy" className="text-link">
-          All app privacy policies
-        </Link>
+        {!policy.hideDirectoryLink && (
+          <Link href="/apps/privacy" className="text-link">
+            All app privacy policies
+          </Link>
+        )}
         {policy.status !== "published" && !policy.hideDraftNotice && (
           <aside className="legal-draft" aria-label="Policy preview status">
             <strong>DRAFT — NOT FOR PUBLICATION</strong>

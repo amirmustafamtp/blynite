@@ -8,6 +8,7 @@ export type AppPrivacyPolicy = {
   contactEmail: string;
   summary: string;
   hideDraftNotice?: boolean;
+  hideDirectoryLink?: boolean;
   sections: { id: string; title: string; content: ReactNode }[];
 } & (
   | { status: "preview" | "public-preview"; effectiveDate: null }
