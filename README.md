@@ -121,7 +121,7 @@ The Privacy Policy is public and included in the sitemap. It describes the websi
 
 - Directory: `/apps/privacy` (accessible directly; omitted from the footer).
 - Individual policy: `/apps/<app-slug>/privacy`.
-- QR & Barcode Toolkit public draft: `https://blynite.com/apps/qr-barcode-toolkit/privacy`.
+- QR & Barcode Toolkit final policy: `https://www.blynite.com/apps/qr-barcode-toolkit/privacy`.
 - Website privacy stays at `/privacy`; app policy content is maintained separately.
 
 Add a typed content file in `src/data/app-policies/` and register it in `index.ts`.
@@ -138,36 +138,27 @@ Policy statuses:
 - `published`: final approved policy with an effective date; included in the
   directory and sitemap with canonical metadata.
 
-On October 22, 2026 the owner authorized making the QR draft publicly accessible
-for now. Its status is `public-preview`. This authorizes public access to the
-existing draft, not claims that the unresolved details have been verified or that
-it is a final effective policy. Internal reviewer notes and the original attachment
-are not served or copied into public assets.
+The QR policy is `published`, using the owner-supplied `privacy-policy-final.md`
+with an effective date of October 23, 2026. The final copy replaces draft labels,
+pending approval text, and provisional support wording. It receives canonical
+metadata and a sitemap entry automatically. Publication does not change the
+policy's stated limits on SDK transmission verification or provider retention.
 
-The QR entry sets `hideDraftNotice: true` at the owner's request to hide the
-page's draft box. This presentation setting does not change its public-preview
-status, metadata, effective date, or policy qualifications. Other app entries
-show the draft box by default until published.
+The QR entry keeps `hideDraftNotice: true` and `hideDirectoryLink: true` as requested.
+The footer also omits the app privacy directory link; direct policy URLs remain
+available. These presentation settings are separate from publication status.
 
 Confirmed identity: Blynite, support@blynite.com, blynite.com, intended audience 13+.
-Do not promise zero collection/transmission, specific response times, or deletion
-of Google-held data. The updated October 22 source includes the documented ML Kit
-baseline for Diagnostics, Device or other IDs, and App interactions, while retaining
-the lack of runtime transmission verification. It also includes approved children's
-wording and support clauses: Namecheap-hosted email, correspondence retention within
-90 days after closure, and a minimal case record for up to 12 months. The draft's
-operational/provider verification qualifications remain visible; internal response
-targets remain excluded. These periods do not apply to app history or Google SDK data.
-Before final approval, verify support operations and provider retention/deletion,
-review policy and app consistency, and approve the final URL and effective date.
-Verify the covered release. Only after final
-owner approval, replace pending text, set `status: "published"` and an approved
-ISO effective date (`YYYY-MM-DD`), then build and deploy. Keep future policy edits
-aligned with each app's actual behavior.
+The final copy retains SDK metrics disclosures, the absence of a verified SDK-data
+deletion mechanism, support correspondence retention within 90 days after closure,
+and minimal case records for up to 12 months. Those periods do not apply to app
+history or Google-held SDK data, and provider-copy deletion remains unverified.
+Internal response targets are not published. Keep future edits aligned with the
+owner-supplied policy and each app's actual behavior.
 
-Run `npm run test:browser -- tests/browser/app-policies.spec.ts` to check the
-directory, public draft availability without indexing, mobile/desktop
-accessibility, and section links.
+Run `npm run test:browser -- tests/browser/app-policies.spec.ts` to check final
+policy metadata, effective date, sitemap inclusion, hidden navigation links,
+mobile/desktop accessibility, and section links.
 
 ## Browser verification
 

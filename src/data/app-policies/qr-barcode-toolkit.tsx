@@ -1,6 +1,6 @@
 import type { AppPrivacyPolicy } from "./types";
 
-// Prepared from the supplied policy text. Internal reviewer notes are not included.
+// Final policy supplied by the owner, effective October 23, 2026.
 export const qrBarcodeToolkitPolicy: AppPrivacyPolicy = {
   slug: "qr-barcode-toolkit",
   name: "QR & Barcode Toolkit",
@@ -9,10 +9,10 @@ export const qrBarcodeToolkitPolicy: AppPrivacyPolicy = {
   contactEmail: "support@blynite.com",
   summary:
     "How QR & Barcode Toolkit handles scanning, generated codes, local history, and content you choose to share.",
-  status: "public-preview",
+  status: "published",
   hideDraftNotice: true,
   hideDirectoryLink: true,
-  effectiveDate: null,
+  effectiveDate: "2026-10-23",
   sections: [
     {
       id: "who-is-responsible-and-what-this-policy-covers",
@@ -232,7 +232,7 @@ export const qrBarcodeToolkitPolicy: AppPrivacyPolicy = {
             }
           </p>
           <p>
-            <strong>{"Draft evidence qualification:"}</strong>
+            <strong>{"SDK configuration and verification:"}</strong>
             {
               " the reviewed release does not request Internet permission. We have not verified which documented metrics actually reach Google under that configuration, including possible handling through another process. The disclosure uses Google's documented SDK baseline rather than promising that transmission is impossible or claiming a successful upload was observed. Exact delivery paths and retention remain technical follow-ups."
             }
@@ -370,9 +370,8 @@ export const qrBarcodeToolkitPolicy: AppPrivacyPolicy = {
             }
           </p>
           <p>
-            <strong>{"Draft qualification:"}</strong>
             {
-              " these are owner-approved periods for Blynite-controlled support records, not verified deletion results or periods for app history or SDK data. Namecheap's deleted-mail and backup retention/deletion behavior remains under verification. No claim is made that all provider copies disappear within these periods. The actual support workflow must be verified before final publication; this qualification must be resolved into accurate final wording."
+              "These periods apply to support records managed by Blynite, not to app history, Google-held SDK information or independently retained provider copies. We have not verified Namecheap's deleted-mail and backup retention/deletion behavior, so we do not promise that all provider copies disappear within these periods."
             }
           </p>
         </>
@@ -380,19 +379,14 @@ export const qrBarcodeToolkitPolicy: AppPrivacyPolicy = {
     },
     {
       id: "policy-location",
-      title: "Policy location",
+      title: "Public policy location",
       content: (
         <>
           <p>
-            <strong>{"Current policy preview:"}</strong>{" "}
+            <strong>{"Policy URL:"}</strong>{" "}
             <a href="https://www.blynite.com/apps/qr-barcode-toolkit/privacy">
               {"www.blynite.com/apps/qr-barcode-toolkit/privacy"}
             </a>
-          </p>
-          <p>
-            {
-              "This address hosts a review draft, not an approved or effective final policy. Final policy approval, the effective date, and approval of the final policy URL remain pending."
-            }
           </p>
         </>
       ),

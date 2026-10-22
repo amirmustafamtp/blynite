@@ -26,27 +26,39 @@ test("app privacy directory remains accessible without a footer link", async ({
   expect(missing?.status()).toBe(404);
 });
 
-test("app policy preview is readable and accessible on mobile and desktop", async ({
+test("final app policy is readable and accessible on mobile and desktop", async ({
   page,
 }) => {
   const response = await page.goto(policyPath);
   expect(response?.status()).toBe(200);
   await expect(page.locator("h1")).toHaveText("QR & Barcode Toolkit");
-  await expect(page.locator('meta[name="robots"]')).toHaveAttribute(
+  await expect(
+    page.locator('meta[name="robots"][content*="noindex"]'),
+  ).toHaveCount(0);
+  await expect(page.locator('link[rel="canonical"]')).toHaveAttribute(
+    "href",
+    `https://blynite.com${policyPath}`,
+  );
+  await expect(page.locator('meta[property="og:url"]')).toHaveAttribute(
     "content",
-    /noindex/,
+    `https://blynite.com${policyPath}`,
   );
-  await expect(page.locator('link[rel="canonical"]')).toHaveCount(0);
-  await expect(page.locator('meta[property="og:url"]')).toHaveCount(0);
+  await expect(page).toHaveTitle(
+    "QR & Barcode Toolkit Privacy Policy | Blynite",
+  );
+  await expect(page.locator('time[datetime="2026-10-23"]')).toHaveText(
+    "October 23, 2026",
+  );
+  await expect(
+    page.getByRole("link", { name: "All app privacy policies", exact: true }),
+  ).toHaveCount(0);
   await expect(page.getByLabel("Policy preview status")).toHaveCount(0);
-  await expect(page.locator("#policy-location")).toContainText(
-    "Final policy approval",
-  );
+  await expect(page.locator("#policy-location")).toContainText("Policy URL:");
   await expect(
     page.locator(`main a[href="https://www.blynite.com${policyPath}"]`),
   ).toHaveCount(1);
   await expect(page.locator("main")).not.toContainText(
-    /TODO:|INTERNAL REVIEWER NOTES|Future Connect|fc\.net\.pk|\/Users\/|2 business days|30 calendar days|release-checklist/,
+    /TODO:|INTERNAL REVIEWER NOTES|Future Connect|fc\.net\.pk|\/Users\/|2 business days|30 calendar days|release-checklist|DRAFT —|Pending final approval|Draft qualification|Draft evidence qualification|review draft/,
   );
   const sdk = page.locator(
     "#third-party-libraries-diagnostics-and-possible-transmissions",
@@ -65,7 +77,9 @@ test("app policy preview is readable and accessible on mobile and desktop", asyn
     "within 90 days after a request is closed",
   );
   await expect(support).toContainText("up to 12 months after closure");
-  await expect(support).toContainText("not verified deletion results");
+  await expect(support).toContainText(
+    "we do not promise that all provider copies disappear within these periods",
+  );
   await expect(page.locator("#retention-and-deletion")).toContainText(
     "not to app history or Google-held SDK information",
   );
@@ -106,16 +120,17 @@ test("app policy preview is readable and accessible on mobile and desktop", asyn
   await expect(page).toHaveURL(/#retention-and-deletion$/);
 });
 
-test("production serves the authorized public draft without indexing it", async ({
-  request,
-}) => {
+test("production serves and indexes the final policy", async ({ request }) => {
   const base = "http://127.0.0.1:3001";
   const policy = await request.get(`${base}${policyPath}`);
   expect(policy.status()).toBe(200);
   const html = await policy.text();
-  expect(html).toContain("DRAFT — NOT FOR PUBLICATION");
-  expect(html).toContain("noindex");
-  expect(html).toContain("Pending final approval");
+  expect(html).not.toContain("DRAFT — NOT FOR PUBLICATION");
+  expect(html).not.toContain("noindex");
+  expect(html).not.toContain("Pending final approval");
+  expect(html).toMatch(
+    /<time\b[^>]*datetime="2026-10-23"[^>]*>October 23, 2026<\/time>/i,
+  );
   expect(html).not.toContain('aria-label="Policy preview status"');
   expect(html).not.toContain("available only in local development");
   const directory = await request.get(`${base}/apps/privacy`);
@@ -123,6 +138,6 @@ test("production serves the authorized public draft without indexing it", async 
   expect(await directory.text()).toContain("QR &amp; Barcode Toolkit");
   const sitemap = await (await request.get(`${base}/sitemap.xml`)).text();
   expect(sitemap).toContain("https://blynite.com/apps/privacy");
-  expect(sitemap).not.toContain(policyPath);
+  expect(sitemap).toContain(policyPath);
   expect(sitemap).toContain("https://blynite.com/privacy");
 });
