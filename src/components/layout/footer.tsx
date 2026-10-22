@@ -57,7 +57,6 @@ export function Footer() {
           <p>© {new Date().getFullYear()} Blynite. All rights reserved.</p>
           <div>
             <Link href="/privacy">Privacy Policy</Link>
-            <Link href="/apps/privacy">App Privacy</Link>
             <Link href="/terms">Terms of Service</Link>
           </div>
           <span className="mono">BUILT WITH PURPOSE.</span>

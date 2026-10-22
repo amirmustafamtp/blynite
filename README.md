@@ -119,7 +119,7 @@ The Privacy Policy is public and included in the sitemap. It describes the websi
 
 ## Mobile app privacy policies
 
-- Directory: `/apps/privacy` (linked as **App Privacy** in the footer).
+- Directory: `/apps/privacy` (accessible directly; omitted from the footer).
 - Individual policy: `/apps/<app-slug>/privacy`.
 - QR & Barcode Toolkit public draft: `https://blynite.com/apps/qr-barcode-toolkit/privacy`.
 - Website privacy stays at `/privacy`; app policy content is maintained separately.

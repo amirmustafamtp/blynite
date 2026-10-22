@@ -3,14 +3,16 @@ import AxeBuilder from "@axe-core/playwright";
 
 const policyPath = "/apps/qr-barcode-toolkit/privacy";
 
-test("app privacy directory is linked separately from the website policy", async ({
+test("app privacy directory remains accessible without a footer link", async ({
   page,
 }) => {
   await page.goto("/privacy");
-  await page
-    .getByRole("contentinfo")
-    .getByRole("link", { name: "App Privacy", exact: true })
-    .click();
+  await expect(
+    page
+      .getByRole("contentinfo")
+      .getByRole("link", { name: "App Privacy", exact: true }),
+  ).toHaveCount(0);
+  await page.goto("/apps/privacy");
   await expect(page).toHaveURL(/\/apps\/privacy$/);
   await expect(page.locator("h1")).toHaveText("App privacy policies.");
   await expect(
