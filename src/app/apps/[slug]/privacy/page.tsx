@@ -82,9 +82,10 @@ export default async function AppPrivacyPage({
             <dd>Blynite</dd>
           </div>
           <div>
-            <dt>App version</dt>
+            <dt>{policy.version ? "App version" : "Platform"}</dt>
             <dd>
-              {policy.platform} · {policy.version}
+              {policy.platform}
+              {policy.version ? ` · ${policy.version}` : ""}
             </dd>
           </div>
           <div>

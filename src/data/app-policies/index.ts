@@ -1,7 +1,11 @@
 import { qrBarcodeToolkitPolicy } from "./qr-barcode-toolkit";
+import { colorQuestPolicy } from "./color-quest";
 import type { AppPrivacyPolicy } from "./types";
 
-export const appPrivacyPolicies: AppPrivacyPolicy[] = [qrBarcodeToolkitPolicy];
+export const appPrivacyPolicies: AppPrivacyPolicy[] = [
+  qrBarcodeToolkitPolicy,
+  colorQuestPolicy,
+];
 
 export function appPrivacyPath(slug: string) {
   return `/apps/${slug}/privacy`;

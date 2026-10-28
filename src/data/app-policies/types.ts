@@ -4,7 +4,7 @@ export type AppPrivacyPolicy = {
   slug: string;
   name: string;
   platform: string;
-  version: string;
+  version?: string;
   contactEmail: string;
   summary: string;
   hideDraftNotice?: boolean;

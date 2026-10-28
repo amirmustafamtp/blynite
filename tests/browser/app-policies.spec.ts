@@ -141,3 +141,75 @@ test("production serves and indexes the final policy", async ({ request }) => {
   expect(sitemap).toContain(policyPath);
   expect(sitemap).toContain("https://blynite.com/privacy");
 });
+
+test("Color Quest has its own published policy and responsive layout", async ({
+  page,
+  request,
+}) => {
+  const path = "/apps/color-quest/privacy";
+  const response = await page.goto(path);
+  expect(response?.status()).toBe(200);
+  await expect(page).toHaveTitle(
+    "Color Quest: Mystery Islands Privacy Policy | Blynite",
+  );
+  await expect(page.locator("h1")).toHaveText("Color Quest: Mystery Islands");
+  await expect(page.locator('time[datetime="2026-10-28"]')).toHaveText(
+    "October 28, 2026",
+  );
+  await expect(page.locator('link[rel="canonical"]')).toHaveAttribute(
+    "href",
+    `https://blynite.com${path}`,
+  );
+  await expect(
+    page.locator('meta[name="robots"][content*="noindex"]'),
+  ).toHaveCount(0);
+  await expect(page.locator(".app-policy-details")).toContainText("Platform");
+  await expect(page.locator(".app-policy-details")).not.toContainText(
+    "App version",
+  );
+  await expect(page.locator("main")).not.toContainText(
+    /QR & Barcode|ML Kit|DRAFT —|Pending final approval|All app privacy policies/,
+  );
+  await expect(
+    page.locator('main a[href="mailto:support@blynite.com"]').first(),
+  ).toBeVisible();
+  await expect(page.locator("#storage-retention-and-removal")).toContainText(
+    "Android app backup is disabled",
+  );
+  await expect(
+    page.locator("#support-and-voluntary-tester-feedback"),
+  ).toContainText(
+    "Removing the game does not automatically delete email correspondence",
+  );
+  for (const width of [1440, 390, 360]) {
+    await page.setViewportSize({ width, height: 900 });
+    expect(
+      await page.evaluate(
+        () => document.documentElement.scrollWidth <= window.innerWidth,
+      ),
+    ).toBe(true);
+    const results = await new AxeBuilder({ page })
+      .withTags(["wcag2a", "wcag2aa", "wcag21aa"])
+      .analyze();
+    expect(results.violations).toEqual([]);
+  }
+  const sections = page.getByRole("navigation", { name: "Policy sections" });
+  await expect(sections.getByRole("link")).toHaveCount(9);
+  for (const link of await sections.getByRole("link").all()) {
+    await expect(page.locator((await link.getAttribute("href"))!)).toHaveCount(
+      1,
+    );
+  }
+  await page.goto("/apps/privacy");
+  await expect(page.locator(`main a[href="${path}"]`).first()).toBeVisible();
+  await expect(
+    page.locator(`main a[href="${policyPath}"]`).first(),
+  ).toBeVisible();
+  expect((await request.get(`http://127.0.0.1:3001${path}`)).status()).toBe(
+    200,
+  );
+  const sitemap = await (
+    await request.get("http://127.0.0.1:3001/sitemap.xml")
+  ).text();
+  expect(sitemap).toContain(`https://blynite.com${path}`);
+});

@@ -122,12 +122,18 @@ The Privacy Policy is public and included in the sitemap. It describes the websi
 - Directory: `/apps/privacy` (accessible directly; omitted from the footer).
 - Individual policy: `/apps/<app-slug>/privacy`.
 - QR & Barcode Toolkit final policy: `https://www.blynite.com/apps/qr-barcode-toolkit/privacy`.
+- Color Quest: Mystery Islands policy: `https://www.blynite.com/apps/color-quest/privacy` (effective October 28, 2026).
 - Website privacy stays at `/privacy`; app policy content is maintained separately.
 
 Add a typed content file in `src/data/app-policies/` and register it in `index.ts`.
 Each entry defines its stable slug, app name, platform, covered version, contact,
 effective date, and sections with unique anchor IDs. The shared route handles
 layout, table of contents, metadata, and unknown-app 404 responses.
+
+Color Quest uses the supplied ad-free Android policy text and is published with
+its stated effective date. Its version number is omitted because none was supplied;
+the shared page shows Platform instead. Its directory link is hidden, matching
+the QR page. Add or update its copy in `src/data/app-policies/color-quest.tsx`.
 
 Policy statuses:
 
