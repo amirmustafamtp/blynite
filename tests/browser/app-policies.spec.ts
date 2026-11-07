@@ -153,8 +153,8 @@ test("Color Quest has its own published policy and responsive layout", async ({
     "Color Quest: Mystery Islands Privacy Policy | Blynite",
   );
   await expect(page.locator("h1")).toHaveText("Color Quest: Mystery Islands");
-  await expect(page.locator('time[datetime="2026-10-28"]')).toHaveText(
-    "October 28, 2026",
+  await expect(page.locator('time[datetime="2026-11-07"]')).toHaveText(
+    "November 7, 2026",
   );
   await expect(page.locator('link[rel="canonical"]')).toHaveAttribute(
     "href",
@@ -176,6 +176,15 @@ test("Color Quest has its own published policy and responsive layout", async ({
   await expect(page.locator("#storage-retention-and-removal")).toContainText(
     "Android app backup is disabled",
   );
+  const permissions = page.locator("#advertising-tracking-and-permissions");
+  await expect(permissions).toContainText("com.android.vending.CHECK_LICENSE");
+  await expect(permissions).toContainText(
+    "At startup, the app calls the Google Play Store’s licensing client",
+  );
+  await expect(permissions).toContainText(
+    "does not request Android’s Internet permission",
+  );
+  await expect(permissions).not.toContainText("requests no permissions");
   await expect(
     page.locator("#support-and-voluntary-tester-feedback"),
   ).toContainText(

@@ -9,7 +9,7 @@ export const colorQuestPolicy: AppPrivacyPolicy = {
   summary:
     "Privacy information for the ad-free Color Quest: Mystery Islands game, including local progress, settings, and support messages.",
   status: "published",
-  effectiveDate: "2026-10-28",
+  effectiveDate: "2026-11-07",
   hideDirectoryLink: true,
   sections: [
     {
@@ -50,7 +50,12 @@ export const colorQuestPolicy: AppPrivacyPolicy = {
         <>
           <p>
             {
-              "This ad-free version displays no advertisements and includes no advertising or advertising-consent SDK. It does not access an advertising identifier or use tracking technologies. The Android release requests no permissions and has no in-app networking feature."
+              "This version of Color Quest: Mystery Islands is ad-free. The game does not include an advertising or advertising-consent SDK, access an advertising identifier, or use advertising trackers. Your progress and settings are saved in private storage on your device. The game does not send that data to Blynite or an analytics service."
+            }
+          </p>
+          <p>
+            {
+              "The version distributed through Google Play declares one Android permission: Google Play’s licensing permission (com.android.vending.CHECK_LICENSE). At startup, the app calls the Google Play Store’s licensing client to check that the game was obtained through Google Play. The game does not request Android’s Internet permission or connect to Blynite servers. Google Play operates under its own privacy policy. This statement describes the game’s permissions and data handling; it does not describe what Google Play processes while providing licensing or distribution services."
             }
           </p>
         </>
