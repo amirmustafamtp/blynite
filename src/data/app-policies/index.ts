@@ -1,10 +1,12 @@
 import { qrBarcodeToolkitPolicy } from "./qr-barcode-toolkit";
 import { colorQuestPolicy } from "./color-quest";
+import { hearthAndHuePolicy } from "./hearth-and-hue";
 import type { AppPrivacyPolicy } from "./types";
 
 export const appPrivacyPolicies: AppPrivacyPolicy[] = [
   qrBarcodeToolkitPolicy,
   colorQuestPolicy,
+  hearthAndHuePolicy,
 ];
 
 export function appPrivacyPath(slug: string) {
