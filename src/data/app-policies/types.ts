@@ -7,6 +7,7 @@ export type AppPrivacyPolicy = {
   version?: string;
   contactEmail: string;
   summary: string;
+  dateLabel?: "Effective date" | "Last updated";
   hideDraftNotice?: boolean;
   hideDirectoryLink?: boolean;
   sections: { id: string; title: string; content: ReactNode }[];

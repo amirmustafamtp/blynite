@@ -97,7 +97,7 @@ export default async function AppPrivacyPage({
             </dd>
           </div>
           <div>
-            <dt>Effective date</dt>
+            <dt>{policy.dateLabel ?? "Effective date"}</dt>
             <dd>
               {policy.effectiveDate ? (
                 <time dateTime={policy.effectiveDate}>
