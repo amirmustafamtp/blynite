@@ -7,9 +7,9 @@ export const hearthAndHuePolicy: AppPrivacyPolicy = {
   platform: "Android",
   contactEmail: "support@blynite.com",
   summary:
-    "Blynite publishes Hearth & Hue for Android. This policy explains what information the game stores, what Google AdMob processes, and how you can manage your privacy choices.",
+    "Blynite publishes Hearth & Hue. This policy explains the information stored by the game, information processed by its advertising services, and your privacy choices. Features and controls vary by app version. The age-range and advertising controls described below apply to versions that include them; older versions may offer fewer controls.",
   status: "published",
-  effectiveDate: "2026-11-15",
+  effectiveDate: "2026-11-23",
   hideDirectoryLink: true,
   sections: [
     {
@@ -18,95 +18,219 @@ export const hearthAndHuePolicy: AppPrivacyPolicy = {
       content: (
         <>
           <p>
-            Hearth &amp; Hue stores your puzzle progress, Stars, renovation
-            progress, and game settings on your device so you can resume
-            playing. You can play without creating an account. Blynite does not
-            upload your game saves to its servers.
+            {
+              "Hearth & Hue stores puzzle progress, Stars, renovation progress, earned hints and bottles, and game settings on your device so you can resume playing. You can play without creating an account. Blynite does not upload your game saves to its servers."
+            }
           </p>
           <p>
-            Your local game data stays in the app’s storage until you remove it.
-            To delete it, open{" "}
+            {
+              "Versions with age and advertising controls also store your selected age range and advertising preference on your device, separately from game progress. The game does not ask for an exact date of birth."
+            }
+          </p>
+          <p>
+            {
+              "Your local game data remains in the app’s storage until you remove it. You can delete it through "
+            }
             <strong>
-              Android Settings → Apps → Hearth &amp; Hue → Storage → Clear data
+              {"Android Settings → Apps → Hearth & Hue → Storage → Clear data"}
             </strong>
-            . This removes your saved progress and settings from the device.
+            {
+              ". This deletes saved progress and settings, including local privacy preferences. Changing an advertising or age preference within the game does not delete earned progress."
+            }
           </p>
         </>
       ),
     },
     {
-      id: "optional-rewarded-ads",
-      title: "Optional rewarded ads",
+      id: "advertising",
+      title: "Advertising",
       content: (
         <>
           <p>
-            On eligible puzzles, you can choose to watch a video ad to earn one
-            extra bottle. You can play through the game without watching ads.
-          </p>
-          <p>
-            Hearth &amp; Hue uses <strong>Google AdMob</strong> to deliver
-            rewarded ads and Google’s <strong>User Messaging Platform</strong>{" "}
-            to manage ad privacy choices. When the game checks your ad privacy
-            settings or requests an ad, Google may receive information from your
-            device. The Google Mobile Ads SDK may collect and share the
-            following information.
+            {
+              "Depending on the app version and your settings, Hearth & Hue may display:"
+            }
           </p>
           <ul>
+            <li>{"Banner ads during puzzles."}</li>
             <li>
-              Your IP address, which can be used to estimate your general
-              location.
+              {
+                "Interstitial ads at natural breaks, such as after level completion."
+              }
             </li>
             <li>
-              App and ad interactions, such as app launches, taps, and video
-              views.
-            </li>
-            <li>
-              Diagnostic and performance information, such as app launch times
-              and freezes.
-            </li>
-            <li>
-              Device or app identifiers, such as the Android advertising ID or
-              app set ID, and other identifiers where applicable.
+              {
+                "Optional rewarded videos for hints or extra bottles. Each eligible completed video provides the reward shown in the game. Closing a video early does not earn its reward."
+              }
             </li>
           </ul>
           <p>
-            Google uses this information to deliver and measure ads, analyze
-            performance, and detect fraud and abuse. Ads may be personalized
-            depending on your choices, device settings, and region. Google and
-            participating advertising partners may process information for these
-            purposes. The Google Mobile Ads SDK encrypts data it transmits using
-            TLS.{" "}
+            {
+              "Puzzles are designed to be solvable without rewarded hints or extra bottles. Advertising availability depends on your privacy choices, age settings, region, network connection, and the advertising provider."
+            }
+          </p>
+          <p>
+            {"Hearth & Hue uses "}
+            <strong>{"Google AdMob"}</strong>
+            {" to deliver ads and Google’s "}
+            <strong>{"User Messaging Platform (UMP)"}</strong>
+            {
+              " to manage applicable privacy choices. When the game checks ad privacy requirements, initializes permitted advertising services, or requests an ad, Google and participating advertising partners may process information including:"
+            }
+          </p>
+          <ul>
+            <li>
+              {
+                "Your IP address, which may be used to estimate general location."
+              }
+            </li>
+            <li>
+              {
+                "App and ad interactions, such as app launches, taps, and video views."
+              }
+            </li>
+            <li>
+              {
+                "Diagnostic and performance information, such as launch times, freezes, and energy usage."
+              }
+            </li>
+            <li>
+              {
+                "Device or app identifiers, such as the Android advertising ID or app set ID, where permitted and applicable."
+              }
+            </li>
+            <li>
+              {
+                "Age-treatment and consent-restriction flags derived from your selected age range. These flags may indicate an age category; the game does not request or send an exact date of birth."
+              }
+            </li>
+          </ul>
+          <p>
+            {
+              "This information may be collected and shared for advertising, ad measurement, analytics, and fraud prevention. Google’s Mobile Ads SDK encrypts data it transmits using Transport Layer Security (TLS)."
+            }
+          </p>
+          <p>
+            {"Further information is available in "}
             <a href="https://policies.google.com/privacy">
-              Google Privacy Policy
+              {"Google’s Privacy Policy"}
             </a>
-            {" · "}
+            {", "}
             <a href="https://policies.google.com/technologies/partner-sites">
-              How Google uses information from partner apps
+              {"how Google uses information from partner apps"}
             </a>
+            {", and "}
+            <a href="https://developers.google.com/admob/android/privacy/play-data-disclosure">
+              {"Google Mobile Ads data disclosures"}
+            </a>
+            {"."}
           </p>
         </>
       ),
     },
     {
-      id: "your-privacy-choices",
-      title: "Your privacy choices",
+      id: "age-ranges-and-advertising-protections",
+      title: "Age ranges and advertising protections",
       content: (
         <>
           <p>
-            Where available, open{" "}
-            <strong>Hearth &amp; Hue → Settings → Ad privacy choices</strong> to
-            review or change your ad privacy choices. You can also manage your
-            advertising ID in Android settings. Your ad privacy choices may
-            affect the ads you see or whether a rewarded ad is available.
+            {"Hearth & Hue is intended for teenagers aged "}
+            <strong>{"13 and over"}</strong>
+            {" and adults. It is not directed to children under 13."}
+          </p>
+          <p>{"In versions with age-range controls:"}</p>
+          <ul>
+            <li>
+              {
+                "You can select an age range without providing an exact birth date, or choose not to provide a range."
+              }
+            </li>
+            <li>
+              {
+                "No ad or advertising-consent requests are made while the age is unknown, the selected range is under 13, or advertising is switched off. The game remains playable."
+              }
+            </li>
+            <li>
+              {
+                "Players aged 13–15 receive the SDK’s stricter under-age-of-consent treatment. Players aged 16–17 receive teen treatment. Teen ad requests disable personalization."
+              }
+            </li>
+            <li>
+              {
+                "Ad requests use the SDK’s general-audience ad-content limit. These settings help restrict delivery but do not guarantee the content of every third-party creative."
+              }
+            </li>
+            <li>
+              {
+                "Adult users receive applicable regional privacy choices. Advertising personalization depends on those choices and the provider’s permitted processing."
+              }
+            </li>
+          </ul>
+          <p>
+            {
+              "Blynite does not receive your selected range on its own servers. Where advertising is enabled, Google receives the age-treatment and consent-restriction flags described above."
+            }
           </p>
           <p>
-            Google retains and deletes information it receives under its own
-            policies. Clearing local game data removes data stored by the game
-            on your device. To manage information Google has already received,
-            use the controls described in Google’s privacy resources.{" "}
+            {
+              "If you believe a child’s personal information has been provided to Blynite inappropriately, contact "
+            }
+            <a href="mailto:support@blynite.com">{"support@blynite.com"}</a>
+            {" so we can review the request and take appropriate action."}
+          </p>
+        </>
+      ),
+    },
+    {
+      id: "your-advertising-and-privacy-choices",
+      title: "Your advertising and privacy choices",
+      content: (
+        <>
+          <p>
+            {"In versions with these controls, open "}
+            <strong>{"Hearth & Hue → Settings → Age & ad privacy"}</strong>
+            {
+              " to change your age range, switch advertising off, or open available regional ad privacy choices. Earlier versions may call this entry "
+            }
+            <strong>{"Ad privacy choices"}</strong>
+            {"."}
+          </p>
+          <p>
+            {
+              "Changes to age or advertising preferences may apply a clean app restart after verifying saved progress. Switching advertising off prevents new ad requests; it does not erase information already received by Google or its partners. You can also manage or delete your advertising ID through Android settings."
+            }
+          </p>
+          <p>
+            {
+              "Where applicable, UMP checks whether a consent message is required. A previously valid choice may be reused, and a new choice may be requested when required. Declining personalization does not block puzzle progression. Depending on the permissions available, the provider may serve restricted ads or no ads. Non-personalized ads may still involve device storage or identifiers and may require consent."
+            }
+          </p>
+          <p>
+            {
+              "Changing these preferences does not reset Stars, earned hints or bottles, completed repairs, or level progress."
+            }
+          </p>
+        </>
+      ),
+    },
+    {
+      id: "retention-and-deletion",
+      title: "Retention and deletion",
+      content: (
+        <>
+          <p>
+            {
+              "Local game progress and settings remain on your device until removed through the game’s storage controls or your device’s app-management settings."
+            }
+          </p>
+          <p>
+            {
+              "Google and participating advertising partners retain and delete information under their own policies. Removing local game data does not delete information they have already received. Use the controls and contact methods in their privacy resources to manage that information. See "
+            }
             <a href="https://policies.google.com/technologies/retention">
-              How Google retains data
+              {"Google’s data-retention information"}
             </a>
+            {"."}
           </p>
         </>
       ),
@@ -117,20 +241,18 @@ export const hearthAndHuePolicy: AppPrivacyPolicy = {
       content: (
         <>
           <p>
-            If you email us, we receive your email address, your message, and
-            any information you choose to include. We use that information to
-            respond and resolve your request. We keep support correspondence for
-            as long as needed to handle your request and meet any applicable
-            legal obligations.
+            {
+              "If you email Blynite, we receive your email address, message, and information you choose to include. We use this information to respond and resolve your request. We retain support correspondence for as long as needed to handle the request and meet applicable legal obligations."
+            }
           </p>
           <p>
-            Depending on where you live, you may have rights to access, correct,
-            or delete personal information, or to object to or restrict certain
-            uses. For privacy questions or requests, contact Blynite at{" "}
+            {
+              "Depending on where you live, you may have rights to access, correct, or delete personal information, withdraw consent, or object to or restrict certain processing. For privacy questions or requests, contact "
+            }
             <strong>
-              <a href="mailto:support@blynite.com">support@blynite.com</a>
+              <a href="mailto:support@blynite.com">{"support@blynite.com"}</a>
             </strong>
-            .
+            {"."}
           </p>
         </>
       ),
@@ -139,10 +261,13 @@ export const hearthAndHuePolicy: AppPrivacyPolicy = {
       id: "changes-to-this-policy",
       title: "Changes to this policy",
       content: (
-        <p>
-          If we change this policy, we’ll post the updated version here and
-          revise the effective date.
-        </p>
+        <>
+          <p>
+            {
+              "If this policy changes, we will publish the updated version on this page and revise its effective date. Please review it periodically for changes relevant to your use of Hearth & Hue."
+            }
+          </p>
+        </>
       ),
     },
   ],
