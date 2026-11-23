@@ -7,7 +7,7 @@ export const hearthAndHuePolicy: AppPrivacyPolicy = {
   platform: "Android",
   contactEmail: "support@blynite.com",
   summary:
-    "Blynite publishes Hearth & Hue. This policy explains the information stored by the game, information processed by its advertising services, and your privacy choices. Features and controls vary by app version. The age-range and advertising controls described below apply to versions that include them; older versions may offer fewer controls.",
+    "Blynite publishes Hearth & Hue. This policy explains the information stored by the game, information processed by its advertising services and regional Google Play age-assurance features, and your privacy choices. Features and controls vary by app version. The age-range and advertising controls described below apply to versions that include them; older versions may offer fewer controls.",
   status: "published",
   effectiveDate: "2026-11-23",
   hideDirectoryLink: true,
@@ -19,7 +19,7 @@ export const hearthAndHuePolicy: AppPrivacyPolicy = {
         <>
           <p>
             {
-              "Hearth & Hue stores puzzle progress, Stars, renovation progress, earned hints and bottles, and game settings on your device so you can resume playing. You can play without creating an account. Blynite does not upload your game saves to its servers."
+              "Hearth & Hue stores puzzle progress, Stars, renovation progress, earned hints and bottles, personal-best records and cosmetic medals where available, and game settings on your device so you can resume playing. You can play without creating an account. Blynite does not upload your game saves to its servers."
             }
           </p>
           <p>
@@ -171,6 +171,32 @@ export const hearthAndHuePolicy: AppPrivacyPolicy = {
               "Blynite does not receive your selected range on its own servers. Where advertising is enabled, Google receives the age-treatment and consent-restriction flags described above."
             }
           </p>
+          <h3>{"Google Play age assurance"}</h3>
+          <p>
+            {"Versions with "}
+            <strong>{"Google Play Age Signals"}</strong>
+            {
+              " first ask Google Play whether mandatory age sharing applies to the user. When Google Play reports that it applies, the game requests access to the available signals. Google Play may provide an age range and verification or parental-approval status. The game uses these responses only for age-appropriate access notices and to direct users to Google Play when age verification or parental review is needed. If the service is unavailable or a response is missing, the game does not treat that as proof that a user is an adult."
+            }
+          </p>
+          <p>
+            {
+              "These responses are processed temporarily in memory. The game does not save them to game progress, send them to Blynite servers, or use them for advertising, marketing, profiling, or analytics. They do not fill in your separate advertising age choice or grant advertising consent. In these versions, the game does not request a voluntary age-sharing prompt where Google Play does not report mandatory sharing."
+            }
+          </p>
+          <p>
+            {
+              "Google Play manages its own account, age-verification, supervision, and sharing processes under Google's policies. The game does not ask you to upload identity documents to Blynite. For information about Google's handling, see "
+            }
+            <a href="https://policies.google.com/privacy">
+              {"Google's Privacy Policy"}
+            </a>
+            {" and "}
+            <a href="https://support.google.com/googleplay/answer/17232873">
+              {"age range sharing on Google Play"}
+            </a>
+            {"."}
+          </p>
           <p>
             {
               "If you believe a child’s personal information has been provided to Blynite inappropriately, contact "
@@ -220,7 +246,7 @@ export const hearthAndHuePolicy: AppPrivacyPolicy = {
         <>
           <p>
             {
-              "Local game progress and settings remain on your device until removed through the game’s storage controls or your device’s app-management settings."
+              "Local game progress, personal-best records, cosmetic medals, and settings remain on your device until removed through the game’s storage controls or your device’s app-management settings."
             }
           </p>
           <p>
@@ -231,6 +257,11 @@ export const hearthAndHuePolicy: AppPrivacyPolicy = {
               {"Google’s data-retention information"}
             </a>
             {"."}
+          </p>
+          <p>
+            {
+              "Play Age Signals responses are not retained by the game after the in-memory check. Google Play may retain its own account and verification information under Google’s policies."
+            }
           </p>
         </>
       ),
