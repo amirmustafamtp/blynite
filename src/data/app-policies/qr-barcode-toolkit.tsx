@@ -1,6 +1,6 @@
 import type { AppPrivacyPolicy } from "./types";
 
-// Final policy supplied by the owner, effective October 23, 2026.
+// Final policy supplied by the owner, effective November 25, 2026.
 export const qrBarcodeToolkitPolicy: AppPrivacyPolicy = {
   slug: "qr-barcode-toolkit",
   name: "QR & Barcode Toolkit",
@@ -12,13 +12,21 @@ export const qrBarcodeToolkitPolicy: AppPrivacyPolicy = {
   status: "published",
   hideDraftNotice: true,
   hideDirectoryLink: true,
-  effectiveDate: "2026-10-23",
+  effectiveDate: "2026-11-25",
   sections: [
     {
       id: "who-is-responsible-and-what-this-policy-covers",
       title: "Who is responsible and what this policy covers",
       content: (
         <>
+          <p>
+            <strong>Android package:</strong>
+            {" com.blynite.qrtoolkit"}
+          </p>
+          <p>
+            <strong>Developer-controlled website:</strong>{" "}
+            <a href="https://blynite.com">blynite.com</a>
+          </p>
           <p>
             {
               "This policy describes how this version of QR & Barcode Toolkit handles camera images, scanned and generated content, local history and settings, and content you choose to copy, export or share. Third-party SDK behavior is addressed separately below. This version does not support account creation, login with an external account, or app-managed cloud history."
@@ -29,7 +37,7 @@ export const qrBarcodeToolkitPolicy: AppPrivacyPolicy = {
     },
     {
       id: "camera-permission-and-scanning",
-      title: "Camera permission and scanning",
+      title: "Camera permission and image scanning",
       content: (
         <>
           <p>
@@ -47,6 +55,13 @@ export const qrBarcodeToolkitPolicy: AppPrivacyPolicy = {
             <strong>{"Decoded text is different from camera images:"}</strong>
             {
               " an accepted scan is automatically added to local history, subject to the Wi-Fi rules below. Google's published description of ML Kit image processing and the remaining diagnostic questions are in section 7."
+            }
+          </p>
+          <p>
+            {"On app versions that include "}
+            <strong>Scan from Image</strong>
+            {
+              ", Android's photo picker or a supported document-picker fallback lets you select an image. The app reads the selected image for that scan; it does not retain a copy of the selected image or persist its URI, and it does not request broad access to your photo library. Decoding uses the bundled on-device barcode model. Your system picker or image provider may offer cloud-hosted images and use its own network services. An accepted decoded result is saved to local history, with recognized Wi-Fi passwords excluded as described below."
             }
           </p>
         </>
@@ -307,7 +322,7 @@ export const qrBarcodeToolkitPolicy: AppPrivacyPolicy = {
         <>
           <p>
             {
-              "You can deny or revoke camera permission, choose whether to copy/export/share/open content, manage individual history records and favorites, clear non-favorite history, and clear app storage through Android. Review a QR's content before exporting it. The current app does not provide a separate SDK-diagnostics preference; choosing not to scan is not established as a way to disable all SDK diagnostic activity."
+              "You can deny or revoke camera permission, choose whether and which image to select for scanning, choose whether to copy/export/share/open content, manage individual history records and favorites, clear non-favorite history, and clear app storage through Android. Review a QR's content before exporting it. The current app does not provide a separate SDK-diagnostics preference; choosing not to scan is not established as a way to disable all SDK diagnostic activity."
             }
           </p>
         </>

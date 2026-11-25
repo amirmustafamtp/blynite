@@ -46,8 +46,8 @@ test("final app policy is readable and accessible on mobile and desktop", async 
   await expect(page).toHaveTitle(
     "QR & Barcode Toolkit Privacy Policy | Blynite",
   );
-  await expect(page.locator('time[datetime="2026-10-23"]')).toHaveText(
-    "October 23, 2026",
+  await expect(page.locator('time[datetime="2026-11-25"]')).toHaveText(
+    "November 25, 2026",
   );
   await expect(
     page.getByRole("link", { name: "All app privacy policies", exact: true }),
@@ -60,6 +60,16 @@ test("final app policy is readable and accessible on mobile and desktop", async 
   await expect(page.locator("main")).not.toContainText(
     /TODO:|INTERNAL REVIEWER NOTES|Future Connect|fc\.net\.pk|\/Users\/|2 business days|30 calendar days|release-checklist|DRAFT —|Pending final approval|Draft qualification|Draft evidence qualification|review draft/,
   );
+  await expect(page.locator("#camera-permission-and-scanning")).toContainText(
+    "Scan from Image",
+  );
+  await expect(page.locator("#camera-permission-and-scanning")).toContainText(
+    "does not retain a copy of the selected image or persist its URI",
+  );
+  await expect(page.locator("#your-controls")).toContainText(
+    "choose whether and which image to select for scanning",
+  );
+  await expect(page.locator("main")).toContainText("com.blynite.qrtoolkit");
   const sdk = page.locator(
     "#third-party-libraries-diagnostics-and-possible-transmissions",
   );
@@ -129,7 +139,7 @@ test("production serves and indexes the final policy", async ({ request }) => {
   expect(html).not.toContain("noindex");
   expect(html).not.toContain("Pending final approval");
   expect(html).toMatch(
-    /<time\b[^>]*datetime="2026-10-23"[^>]*>October 23, 2026<\/time>/i,
+    /<time\b[^>]*datetime="2026-11-25"[^>]*>November 25, 2026<\/time>/i,
   );
   expect(html).not.toContain('aria-label="Policy preview status"');
   expect(html).not.toContain("available only in local development");
