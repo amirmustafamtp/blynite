@@ -1,6 +1,6 @@
 import type { AppPrivacyPolicy } from "./types";
 
-// Final policy supplied by the owner, effective November 25, 2026.
+// Final policy supplied by the owner, effective November 26, 2026.
 export const qrBarcodeToolkitPolicy: AppPrivacyPolicy = {
   slug: "qr-barcode-toolkit",
   name: "QR & Barcode Toolkit",
@@ -12,7 +12,7 @@ export const qrBarcodeToolkitPolicy: AppPrivacyPolicy = {
   status: "published",
   hideDraftNotice: true,
   hideDirectoryLink: true,
-  effectiveDate: "2026-11-25",
+  effectiveDate: "2026-11-26",
   sections: [
     {
       id: "who-is-responsible-and-what-this-policy-covers",
@@ -29,7 +29,7 @@ export const qrBarcodeToolkitPolicy: AppPrivacyPolicy = {
           </p>
           <p>
             {
-              "This policy describes how this version of QR & Barcode Toolkit handles camera images, scanned and generated content, local history and settings, and content you choose to copy, export or share. Third-party SDK behavior is addressed separately below. This version does not support account creation, login with an external account, or app-managed cloud history."
+              "This policy describes how QR & Barcode Toolkit handles camera images, scanned and generated content, local history and settings, and content you choose to copy, export or share. Third-party SDK behavior is addressed separately below. The app does not support account creation, login with an external account, or app-managed cloud history. Some builds are ads-free; others include advertising and the age-range and consent controls described below. The advertising sections apply only to builds that include those features. Ads-free builds do not gain advertising because this policy or a consent message is updated."
             }
           </p>
         </>
@@ -107,7 +107,7 @@ export const qrBarcodeToolkitPolicy: AppPrivacyPolicy = {
           </p>
           <p>
             {
-              "The app also stores your theme choice and a marker that camera permission has been requested. Live generator drafts and scan results are held in memory; they are not a separate draft-storage service. Saved history remains after the live screen is closed."
+              "The app also stores your theme choice and a marker that camera permission has been requested. In ads-enabled builds, it stores your advertising age-range choice locally: under 18, 18 or older, or unspecified. It does not collect a date of birth or identity document for this choice. Google's consent SDK also uses device storage for consent state and preferences. Live generator drafts and scan results are held in memory; they are not a separate draft-storage service. Saved history remains after the live screen is closed."
             }
           </p>
         </>
@@ -249,12 +249,49 @@ export const qrBarcodeToolkitPolicy: AppPrivacyPolicy = {
           <p>
             <strong>{"SDK configuration and verification:"}</strong>
             {
-              " the reviewed release does not request Internet permission. We have not verified which documented metrics actually reach Google under that configuration, including possible handling through another process. The disclosure uses Google's documented SDK baseline rather than promising that transmission is impossible or claiming a successful upload was observed. Exact delivery paths and retention remain technical follow-ups."
+              " the existing reviewed ads-free build does not request Internet permission. Ads-enabled builds request Internet and network-state access for advertising and consent services. We have not established all actual ML Kit metric delivery paths for either build configuration, including possible handling through another process. The disclosure uses Google's documented SDK baseline rather than promising that transmission is impossible or claiming a successful upload was observed. Exact delivery paths and retention remain technical follow-ups."
             }
           </p>
           <p>
             {
-              "The app also uses CameraX, ZXing Core, Room and DataStore. ML Kit includes Play-services, DataTransport and Firebase component/encoding support. There is no AdMob or app-added Firebase Analytics/Crashlytics integration in this version. The SDK metrics described here remain part of the disclosure. Barcode auto-zoom is not enabled."
+              "The app also uses CameraX, ZXing Core, Room and DataStore. ML Kit includes Play-services, DataTransport and Firebase component/encoding support. The ads-free build contains no AdMob integration. The app does not add Firebase Analytics or Crashlytics; ads-enabled builds add the advertising and consent SDKs described below. The SDK metrics described here remain part of the disclosure. Barcode auto-zoom is not enabled."
+            }
+          </p>
+          <h3>{"Advertising and consent in ads-enabled builds"}</h3>
+          <p>
+            {
+              "Ads-enabled builds use Google Mobile Ads SDK (AdMob), currently version 25.5.0, and Google User Messaging Platform (UMP), currently version 4.0.0. Advertising and consent use network services and device storage separately from on-device QR processing. The app does not attach QR contents, local history, Wi-Fi passwords, contact-generator entries or search queries to its ad requests."
+            }
+          </p>
+          <p>
+            <a href="https://developers.google.com/admob/android/privacy/play-data-disclosure">
+              {"Google's Mobile Ads data disclosure"}
+            </a>
+            {
+              " describes IP addresses, which can indicate approximate location; ad/product interactions; performance diagnostics; and device/account identifiers used for advertising, analytics and fraud prevention. Google describes SDK data transport as encrypted with TLS. This app removes Android advertising-ID and Android AdServices ID, topics and attribution permissions from its ads-enabled manifest; that does not disable other SDK data handling. We have not independently measured every transmitted field or established Google's exact retention/deletion periods. See also "
+            }
+            <a href="https://policies.google.com/technologies/ads">
+              {"Google's advertising information"}
+            </a>
+            {" and "}
+            <a href="https://policies.google.com/privacy">
+              {"Google's Privacy Policy"}
+            </a>
+            {"."}
+          </p>
+          <p>
+            {
+              "Before app-initiated consent updates or ad loading, the app asks for a local advertising age range. Under-18 and unspecified choices keep app-initiated consent updates and ad loading off. Dismissing the question records unspecified. Choosing 18 or older permits the consent flow; it does not itself give advertising consent. Missing or invalid age choices keep ad loading off. You can change the age range in Settings. All existing app tools remain available with these choices. The range is a self-declaration, not verified age assurance."
+            }
+          </p>
+          <p>
+            {
+              "For eligible adult users, UMP checks whether a consent message or privacy-options entry point is required. The applicable form offers privacy choices, including refusal and management options. Where required by the SDK, Settings provides Ad privacy options to revisit those choices. The app uses UMP's current eligibility result before loading ads. Declining consent is not a promise that all SDK traffic stops or that no ads can appear; subsequent serving depends on the choices, region and SDK configuration. An error or unavailable form does not make the age choice equivalent to consent."
+            }
+          </p>
+          <p>
+            {
+              "Changing the age range suppresses subsequent app ad requests while the choice is edited and for under-18 or unspecified selections. It does not erase earlier consent preferences or data already held by Google. An advertising SDK already initialized during an adult session cannot be uninitialized by this control. These controls do not disable ML Kit's separate diagnostics described above or guarantee that all SDK background traffic stops."
             }
           </p>
         </>
@@ -265,6 +302,11 @@ export const qrBarcodeToolkitPolicy: AppPrivacyPolicy = {
       title: "Retention and deletion",
       content: (
         <>
+          <p>
+            {
+              "Your local advertising age range has no automatic expiry. You can replace it in Settings; clearing app storage or uninstalling removes the local choice. Consent SDK preferences and any service-held data have separate handling described in section 7."
+            }
+          </p>
           <p>
             {
               "History has no automatic expiry. You can delete an individual record from History or Favorites. Removing favorite status alone does not delete it. "
@@ -322,7 +364,7 @@ export const qrBarcodeToolkitPolicy: AppPrivacyPolicy = {
         <>
           <p>
             {
-              "You can deny or revoke camera permission, choose whether and which image to select for scanning, choose whether to copy/export/share/open content, manage individual history records and favorites, clear non-favorite history, and clear app storage through Android. Review a QR's content before exporting it. The current app does not provide a separate SDK-diagnostics preference; choosing not to scan is not established as a way to disable all SDK diagnostic activity."
+              "You can deny or revoke camera permission, choose whether and which image to select for scanning, choose whether to copy/export/share/open content, manage individual history records and favorites, clear non-favorite history, and clear app storage through Android. Review a QR's content before exporting it. In ads-enabled builds, you can change Age range for ads in Settings and reopen Ad privacy options when required by UMP. These controls do not delete earlier service-held data. The app does not provide a separate SDK-diagnostics preference; choosing not to scan is not established as a way to disable all SDK diagnostic activity."
             }
           </p>
         </>
@@ -335,14 +377,14 @@ export const qrBarcodeToolkitPolicy: AppPrivacyPolicy = {
         <>
           <p>
             {
-              "QR & Barcode Toolkit is intended for people aged 13 and over and is not intended for children under 13. The sections of this policy about local storage, sharing and third-party SDKs also apply to users aged 13–17."
+              "QR & Barcode Toolkit is intended for people aged 13 and over and is not intended for children under 13. The sections of this policy about local storage, sharing and third-party SDKs also apply to users aged 13–17. In ads-enabled builds, selecting under 18 or leaving the age range unspecified suppresses app-initiated advertising and consent requests, as described in section 7. This does not change the app's intended 13+ audience or disable separate ML Kit diagnostics."
             }
           </p>
           <p>
             {
               "If you are a parent or guardian with a concern about your child's personal information, contact "
             }
-            <a href="mailto:support@blynite.com">{"support@blynite.com"}</a>
+            <a href="mailto:support@blynite.com">support@blynite.com</a>
             {
               ". Please describe the concern without sending passwords, private QR contents, identity documents or unnecessary details about the child. We will review the request and explain the actions available for information we control."
             }

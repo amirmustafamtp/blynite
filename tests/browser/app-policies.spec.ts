@@ -46,8 +46,8 @@ test("final app policy is readable and accessible on mobile and desktop", async 
   await expect(page).toHaveTitle(
     "QR & Barcode Toolkit Privacy Policy | Blynite",
   );
-  await expect(page.locator('time[datetime="2026-11-25"]')).toHaveText(
-    "November 25, 2026",
+  await expect(page.locator('time[datetime="2026-11-26"]')).toHaveText(
+    "November 26, 2026",
   );
   await expect(
     page.getByRole("link", { name: "All app privacy policies", exact: true }),
@@ -74,9 +74,18 @@ test("final app policy is readable and accessible on mobile and desktop", async 
     "#third-party-libraries-diagnostics-and-possible-transmissions",
   );
   await expect(sdk).toContainText("17.3.0");
+  await expect(sdk).toContainText("25.5.0");
+  await expect(sdk).toContainText("4.0.0");
+  await expect(sdk).toContainText(
+    "Under-18 and unspecified choices keep app-initiated consent updates and ad loading off",
+  );
+  await expect(sdk).toContainText(
+    "An advertising SDK already initialized during an adult session cannot be uninitialized by this control",
+  );
+
   await expect(sdk).toContainText("App interactions");
   await expect(sdk).toContainText(
-    "We have not verified which documented metrics actually reach Google",
+    "We have not established all actual ML Kit metric delivery paths",
   );
   await expect(page.locator("#children-s-privacy")).toContainText(
     "users aged 13–17",
@@ -139,7 +148,7 @@ test("production serves and indexes the final policy", async ({ request }) => {
   expect(html).not.toContain("noindex");
   expect(html).not.toContain("Pending final approval");
   expect(html).toMatch(
-    /<time\b[^>]*datetime="2026-11-25"[^>]*>November 25, 2026<\/time>/i,
+    /<time\b[^>]*datetime="2026-11-26"[^>]*>November 26, 2026<\/time>/i,
   );
   expect(html).not.toContain('aria-label="Policy preview status"');
   expect(html).not.toContain("available only in local development");
